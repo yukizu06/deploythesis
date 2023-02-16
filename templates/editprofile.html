@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial scale=1.0">
+    <title> HoMe ExpeDiTioNer </title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="subheader">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <nav>   
+            <a href="/index/"><img src="{% static 'images/homeexloderlogo.png' %}"></a>            
+            <!-- <div class="nav-links">
+            <ul>
+                <li><a href="/index/">HOME</a></li>
+                <li><a href="about">ABOUT</a></li>
+                <li><a href="symptoms">SYMPTOMS</a></li>
+                <li><a href="hospital">HOSPITALS</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a href="profile">{{ username|upper }}</a></li>
+                {% else %}
+                <li><a href="profile">PROFILE</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <li><a href="logout">LOG-OUT</a></li>
+                {% else %}
+                <li><a href="login">LOG-IN</a></li>
+                {% endif %}
+            </ul>
+            </div> -->
+        </nav>
+        
+    </section>
+<!---------- Edit Profile ---------->
+    <form method="post" action="" autocomplete="off" id="edit" name="edit">
+        {% csrf_token %}
+        <label for="fullname1">Fullname:</label>
+        <input type="text" id="fullname1" name="fullname1" value="{{ fullname }}">
+        <br>
+        <label for="age1">Age:</label>
+        <input type="int" id="age1" name="age1" value="{{ age }}">
+        <br>
+        <label for="allergies1">Allergies:</label>
+        <input type="text" id="allergies1" name="allergies1" value="{{ allergies }}">
+        <br>
+        <label for="bloodtype1">Blood type:</label>
+        <input type="text" id="bloodtype1" name="bloodtype1" value="{{ blood }}">
+        <br>
+        <label for="height1">Height in cm:</label>
+        <input type="text" id="height1" name="height1" value="{{ height }}">
+        <br>
+        <label for="weight1">Weight in Kg:</label>
+        <input type="text" id="weight1" name="weight1" value="{{ weight }}">
+        <br>
+        <input type="submit" value="Save Changes">
+    </form>
+    {% if messages %}
+        <ul class="messages">
+                <li>{{ message }}</li>
+        </ul>
+    {% endif %}
+
+    <script>
+        setTimeout(function() {
+            var messages = document.querySelector('.messages');
+            messages.style.display = 'none';
+        }, 3000);
+    </script>
+
+</body>
+</html>

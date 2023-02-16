@@ -1,0 +1,366 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial scale=1.0">
+    <title> HoMe ExpeDiTioNer </title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css" integrity="sha384-z4tVnCr80ZcL0iufVdGQSUzNvJsKjEtqYZjiQrrYKlpGow+btDHDfQWkFjoaz/Zr" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/5b8bd885f6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<body>
+
+    <section class="header">
+        <!-- <form class="search-form" method="POST" action="search" autocomplete="off" onclick="showKeyboard()">
+            {% csrf_token %}
+            <input type="text" name="search_query" value="{{ request.POST.search_query }}" placeholder="Search Disease...." id="input">
+            <button type="submit"><i class="fas fa-search"></i></button>
+            <div id="keyboard" style="display:none;">
+                <button type="button" id="Q" onclick="addToInput('Q')">Q</button>
+                <button type="button" id="W" onclick="addToInput('W')">W</button>
+                <button type="button" id="E" onclick="addToInput('E')">E</button>
+                <button type="button" id="R" onclick="addToInput('R')">R</button>
+                <button type="button" id="T" onclick="addToInput('T')">T</button>
+                <button type="button" id="Y" onclick="addToInput('Y')">Y</button>
+                <button type="button" id="U" onclick="addToInput('U')">U</button>
+                <button type="button" id="I" onclick="addToInput('I')">I</button>
+                <button type="button" id="O" onclick="addToInput('O')">O</button>
+                <button type="button" id="P" onclick="addToInput('P')">P</button>
+                <button type="button" id="backspace" onclick="funcDel()">Delete</button><br>
+                <button type="button" id="A" onclick="addToInput('A')">A</button>
+                <button type="button" id="S" onclick="addToInput('S')">S</button>
+                <button type="button" id="D" onclick="addToInput('D')">D</button>
+                <button type="button" id="F" onclick="addToInput('F')">F</button>
+                <button type="button" id="G" onclick="addToInput('G')">G</button>
+                <button type="button" id="H" onclick="addToInput('H')">H</button>
+                <button type="button" id="J" onclick="addToInput('J')">J</button>
+                <button type="button" id="K" onclick="addToInput('K')">K</button>
+                <button type="button" id="L" onclick="addToInput('L')">L</button>
+                <button type="submit" id="enter" onclick="simulateEnter()">Enter</button> <br>
+                <button type="button" id="Z" onclick="addToInput('Z')">Z</button>
+                <button type="button" id="X" onclick="addToInput('X')">X</button>
+                <button type="button" id="C" onclick="addToInput('C')">C</button>
+                <button type="button" id="V" onclick="addToInput('V')">V</button>
+                <button type="button" id="B" onclick="addToInput('B')">B</button>
+                <button type="button" id="N" onclick="addToInput('N')">N</button>
+                <button type="button" id="M" onclick="addToInput('M')">M</button><br>
+                <button type="button" id="space" onclick="addToInput(' ')">Space</button>
+                <button type="button" id="clear" onclick="funcClr()">Clear</button>   
+            </div>
+        </form> -->
+
+        <nav>   
+            <a href="/index/"><img src="{% static 'images/homeexloderlogo.png' %}"></a>            
+            <div class="nav-links">
+            <ul>
+                <li><a href="/index/">HOME</a></li>
+                <li><a href="about">ABOUT</a></li>
+                <li><a href="symptoms">SYMPTOMS</a></li>
+                <li><a href="hospital">HOSPITALS</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a href="profile">{{ username|upper }}</a></li>
+                {% else %}
+                <li><a href="profile">PROFILE</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <li><a href="logout">LOG-OUT</a></li>
+                {% else %}
+                <li><a href="login">LOG-IN</a></li>
+                {% endif %}
+            </ul>
+            </div>
+        </nav>
+
+        <div class="text-box">
+        <h1>HoMe ExLoDer: Hospital and Medical Expert Location Finder</h1>
+        <p>
+            If you don't know which hospital to go for your medication. 
+            This website can help you in finding the best possible hospital 
+            that can help you.
+        </p>
+        <a href="contact" class="hero-btn">Contact us to know more.</a>
+        </div>
+
+        <div class="human-anatomy">
+            <div class="popuphead" id="popup-head">
+                <div class="overlay"></div>
+                <div class="content">
+                    <div class="close-btn" onclick="closePopup()">&times;</div>
+                    <h1>COMMON SICKNESS <Br>THAT OCCURS IN THE HEAD<hr></h1>
+                    <p class="popup-info">
+                        <ul>
+                            <li style="list-style-position:inside;">Migraine<br></li>
+                                -Severe headaches<br>
+                                -Nausea<br>
+                                -Vomiting<br>
+                                -Sensitivity to light and sound<br><br>
+                            <li style="list-style-position:inside;">Tension headaches<br></li>
+                                -Mild to moderate headaches<br>
+                                -Pressure like pain in the forehead, temples, or the back of the head<br><br>
+                            <li style="list-style-position:inside;">Sinusitis<br></li>
+                                -Headache<br>
+                                -Facial pain<br>
+                                -Nasal congestion<br>
+                                -Thick green or yellow discharge from the nose <br><br>
+                            <li style="list-style-position:inside;">Concussion<br></li>
+                                -Headache<br>
+                                -Confusion<br>
+                                -Memory loss<br>
+                                -Dizziness<br>
+                                -Blurred Vision<br><br>
+                            <li style="list-style-position:inside;">Bells Palsy<br></li>
+                                -Sudden weakness or paralysis of the muscles on one side of the face<br>
+                                -Drooling<br>
+                                -Difficulty smiling or closing the eye on the side<br><br>
+                            <li style="list-style-position:inside;">Meniere's Disease<br></li>
+                                -Vertigo<br>
+                                -Ringing in the ear (Tinnitus)<br>
+                                -Hearing loss<br>
+                                -Feeling of fullness in ear<br><br>
+                            <li style="list-style-position:inside;">Acoustic Neuroma<br></li>
+                                -Gradual hearing loss<br>
+                                -Ringing in the ear<br>
+                                -Dizziness<br>
+                                -Hearing loss<br><br>
+                            <li style="list-style-position:inside;">Stroke<br></li>
+                                -Sudden numbness or weakness on one side of the face or body<br>
+                                -Trouble speaking or understanding speech<br>
+                                -Confusion<br>
+                                -Loss of balance or coordination<br><br>
+                            <li style="list-style-position:inside;">Trigeminal Neuralgia<br></li>
+                                -Sudden severe facial pain<br>
+                                -Usually triggered by simple activities such as:<br>
+                                    a. Eating<br>
+                                    b. Speaking<br>
+                                    c. Brushing of teeth<br><br>   
+                            <li style="list-style-position:inside;">Depression<br></li>
+                                -Persistent feeling of:<br>
+                                    a. Sadness<br>
+                                    b. Hopelesness<br>
+                                    c. Worthlesness<br>
+                                -Changes in apettite and sleeping patterns<br>
+                                -Lack of interest in activities once enjoyed.<br><br>          
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="head" onclick="togglePopup() = '#';"><img src="{% static 'images/head.png' %}"></div>
+            
+            <div class="popuptorso" id="popup-torso">
+                <div class="overlay"></div>
+                <div class="content">
+                    <div class="close-btn" onclick="closePopup1()">&times;</div>
+                    <h1>COMMON SICKNESS <Br>THAT OCCURS IN THE MIDDLE PART OF THE BODY<hr></h1>
+                    <p class="popup-info">
+                        <ul>
+                            <li style="list-style-position:inside;">Diabetes<br></li>
+                                -Excessive thirst<br>
+                                -Frequent urination<br>
+                                -Unexplained weight loss<br>
+                                -Fatigue<br>
+                                -Blurry vision<br><br>
+                            <li style="list-style-position:inside;">Arthritis<br></li>
+                                -Joint pain<br>
+                                -Stiffness<br>
+                                -Swelling particularly in:<br>
+                                    a. Hand<br>
+                                    b. Feet<br>
+                                    c. Wrists<br>
+                                    d. Knee<br>
+                                    e. Hips<br><br>
+                            <li style="list-style-position:inside;">Heart Disease<br></li>
+                                -Chest pain<br>
+                                -Shortness of breath<br>
+                                -Lightheadness<br>
+                                -Fatigue<br><br>
+                            <li style="list-style-position:inside;">Cancer<br></li>
+                                -Fatigue<br>
+                                -Unexplained weight loss<br>
+                                -Persistent pain<br>
+                                -Changes in skin or mole appearance<br>
+                                -Persistent coughing or change in voice<br><br>
+                            <li style="list-style-position:inside;">Asthma<br></li>
+                                -Shortness of breath<br>
+                                -Wheezing<br>
+                                -Coughing<br>
+                                -Chest tightness<br><br>
+                            <li style="list-style-position:inside;">Kidney Disease<br></li>
+                                -Fatigue<br>
+                                -Swelling in the legs, ankle, and feet<br>
+                                -Changes in urination frequency and appearance<br>
+                                -Persistent itching<br><br>
+                            <li style="list-style-position:inside;">Liver Disease<br></li>
+                                -Fatigue<br>
+                                -Abdominal pain and swelling<br>
+                                -Jaundice (Yellowing of the skin and eyes, itchy skin)<br><br>
+                            <li style="list-style-position:inside;">Thyroid Disorders<br></li>
+                                -Fatigue<br>
+                                -Weight changes<br>
+                                -Sensitivity to cold or heat<br>
+                                -Changes in skin and hair texture<br>
+                                -Changes in menstrual cycles<br><br>
+                            <li style="list-style-position:inside;">Influenza (Flu)<br></li>
+                                -Sudden fever<br>
+                                -Headaches<br>
+                                -Muscle Aches<br>
+                                -Fatigue<br>
+                                -Runny or stuffy nose<br><br> 
+                            <li style="list-style-position:inside;">Irritable Bowel Syndrome (IBS)<br></li>
+                                -Abdominal pain<br>
+                                -Bloating<br>
+                                -Constipation<br>
+                                -Diarrhea<br><br>
+                            <li style="list-style-position:inside;">Gastroesophageal Reflux Disease (GERD)<br></li>
+                                -Heart burn<br>
+                                -Acid regurgitation<br>
+                                -Difficulty swallowing<br><br>           
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="torso" onclick="togglePopup1() = '#';"><img src="{% static 'images/torso.png' %}"></div>
+            
+            <div class="popuplegs" id="popup-legs">
+                <div class="overlay"></div>
+                <div class="content">
+                    <div class="close-btn" onclick="closePopup2()">&times;</div>
+                    <h1>COMMON SICKNESS <Br>THAT OCCURS IN THE LOWER PART OF THE BODY<hr></h1>
+                    <p class="popup-info">
+                        <ul>
+                            <li style="list-style-position:inside;">Osteoarthritis<br></li>
+                                -Joint pain<br>
+                                -Stifness and swelling particularly in:<br>
+                                    a. Hips<br>
+                                    b. Kness<br>
+                                    c. Lower back<br><br>
+                            <li style="list-style-position:inside;">Sciatica<br></li>
+                                -Sharp pain in the lower back and leg<br>
+                                -Numbness<br>
+                                -Tingling or weakness in the leg<br><br>
+                            <li style="list-style-position:inside;">Varicose Vein<br></li>
+                                -Swollen, twisted veins usually in the legs causing:<br>
+                                    a. Pain<br>
+                                    b. Swelling<br>
+                                    c. Aching<br><br>
+                            <li style="list-style-position:inside;">Deep Vein Thrombosis (DVT)<br></li>
+                                -Swelling and pain in one leg<br>
+                                -Redness and warmth in the affected area<br><br>
+                            <li style="list-style-position:inside;">Prostate Issues<br></li>
+                                -Frequent urination<br>
+                                -Difficulty starting or stopping urination<br>
+                                -Weak urine flow<br>
+                                -Pain or burning sensation during urination<br><br>
+                            <li style="list-style-position:inside;">Urinary Incontinence<br></li>
+                                -Loss of bladder control<br>
+                                -Leaking urine unexpectedly<br><br>
+                            <li style="list-style-position:inside;">Endometriosis<br></li>
+                                -Pelvic pain<br>
+                                -Heavy menstrual periods<br>
+                                -Pain during intercourse and fatigue<br><br>
+                            <li style="list-style-position:inside;">Hemorrhoids<br></li>
+                                -Itching, pain, and bleeding during bowel movements<br>
+                                -Bulging or tender lump near the anus<br><br>        
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="legs" onclick="togglePopup2() = '#';"><img src="{% static 'images/legs.png' %}"></div>
+        </div>
+        <!-- <a href="{% url 'download_pdf' %}">
+            <button>Download PDF</button>
+        </a> -->
+    </section>
+    <script>
+        function togglePopup(){
+            document.getElementById("popup-head").classList.toggle("active");
+            document.body.style.overflow = "hidden";
+            hospital.style.pointerEvents = "none";
+            row.style.pointerEvents = "none";
+            hospitalcol.style.pointerEvents = "none";
+            subheader.style.pointerEvents = "none";
+        }
+        function togglePopup1(){
+            document.getElementById("popup-torso").classList.toggle("active");
+            document.body.style.overflow = "hidden";
+            hospital.style.pointerEvents = "none";
+            row.style.pointerEvents = "none";
+            hospitalcol.style.pointerEvents = "none";
+            subheader.style.pointerEvents = "none";
+        }
+        function togglePopup2(){
+            document.getElementById("popup-legs").classList.toggle("active");
+            document.body.style.overflow = "hidden";
+            hospital.style.pointerEvents = "none";
+            row.style.pointerEvents = "none";
+            hospitalcol.style.pointerEvents = "none";
+            subheader.style.pointerEvents = "none";
+        }
+        function closePopup2(){
+            document.getElementById("popup-legs").classList.toggle("active");
+            document.body.style.overflow = "auto";
+        }
+        function closePopup1(){
+            document.getElementById("popup-torso").classList.toggle("active");
+            document.body.style.overflow = "auto";
+        }
+        function closePopup(){
+            document.getElementById("popup-head").classList.toggle("active");
+            document.body.style.overflow = "auto";
+        }
+
+        function funcClr() {
+            var input = document.getElementById("input");
+            input.value = "";
+        }
+        function funcDel() {
+            var input = document.getElementById("input");
+            input.value = input.value.substring(0, input.value.length -1);
+        }
+        function showKeyboard() {
+            var keyboard = document.getElementById("keyboard");
+            keyboard.style.display = "block";
+            var textBox = document.getElementsByClassName("text-box")[0];
+            var textBoxP = textBox.getElementsByTagName("p")[0];
+            var textBoxA = textBox.getElementsByTagName("a")[0];
+            textBoxP.style.visibility = "hidden";
+            textBoxA.style.visibility = "hidden";
+            textBox.style.pointerEvents = "none";
+        }
+      
+        function addToInput(letter) {
+            var input = document.getElementById("input");
+            input.value += letter;
+        }
+      
+        document.getElementById("input").onfocus = function() {
+          showKeyboard();
+        }
+        
+        document.addEventListener("click", function(event) {
+          var input = document.getElementById("input");
+          var keyboard = document.getElementById("keyboard");
+      
+          if (event.target !== input && !keyboard.contains(event.target)) {
+            keyboard.style.display = "none";
+            var textBox = document.getElementsByClassName("text-box")[0];
+            var textBoxP = textBox.getElementsByTagName("p")[0];
+            var textBoxA = textBox.getElementsByTagName("a")[0];
+            textBoxP.style.visibility = "visible";
+            textBoxA.style.visibility = "visible";
+            textBox.style.pointerEvents = "auto";
+          }
+        });
+        
+        function simulateEnter() {
+          location.href="search"
+        }
+      </script>
+   
+
+</body>
+</html>

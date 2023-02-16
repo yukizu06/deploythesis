@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial scale=1.0">
+    <title> HoMe ExpeDiTioNer </title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="subheader">
+        <nav>   
+            <a href="/index/"><img src="{% static 'images/homeexloderlogo.png' %}"></a>            
+            <div class="nav-links">
+            <ul>
+                <li><a href="/index/">HOME</a></li>
+                <li><a href="about">ABOUT</a></li>
+                <li><a href="symptoms">SYMPTOMS</a></li>
+                <li><a href="hospital">HOSPITALS</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a href="profile">{{ username|upper }}</a></li>
+                {% else %}
+                <li><a href="profile">PROFILE</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <li><a href="logout">LOG-OUT</a></li>
+                {% else %}
+                <li><a href="login">LOG-IN</a></li>
+                {% endif %}
+            </ul>
+            </div>
+        </nav>
+        <h1>About Us</h1>
+    </section>
+
+    <section class="about-us">
+            <div class="row">
+                <div class="about-col">
+                    <h1>We can help you find the possibly most accurate hospital in Dasmarinas.</h1>
+                    <p>HoMe ExpeDiTioner is a website that uses search logic for finding hospitals 
+                        that has the best equipements, medication, and medical experts for the illness
+                        that you are looking. Saving you both time and money when finding hospitals, instead
+                        of physically going in there to check if they have the equipment to cater your needs you can
+                        just check in our website if they have it.</p>
+                        <a href="hospital" class="hero-btn orangered-btn">Check the available <br>hospitals in Dasmarinas</a>
+                        <a href="profile" class="hero-btn orangered-btn">Check if you have a <br> account or view your profile</a>
+                </div>
+                <div class="about-col">
+                    <img src="{% static 'images/kiosk.jpg' %}">
+                </div>
+            </div>
+    </section>
+</body>
+</html>

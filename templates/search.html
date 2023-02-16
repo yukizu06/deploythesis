@@ -1,0 +1,149 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> HoMe ExpeDiTioNer </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&display=swap" rel="stylesheet">
+  <link href="{% static 'style.css' %}" rel="stylesheet">
+</head>
+<body>
+  <section class="dub-header">
+    <form class="search-form" method="POST" action="search" autocomplete="off">
+        {% csrf_token %}
+        <input type="text" name="search_query" value="{{ request.POST.search_query }}" placeholder="Search Disease...." id="input" onclick="showKeyboard()">
+        <button type="submit"><i class="fas fa-search"></i></button>
+        <input type="radio" id="nearest" name="sort_by" value="nearest">
+        <label>Sort by Nearest</label>
+        <br>
+        <input type="radio" id="rating" name="sort_by" value="rating">
+        <label>Sort by Rating</label>
+        <br>
+        <input type="submit" value="Sort">
+        <div id="keyboard" style="display:none;">
+          <button type="button" id="Q" onclick="addToInput('Q')">Q</button>
+          <button type="button" id="W" onclick="addToInput('W')">W</button>
+          <button type="button" id="E" onclick="addToInput('E')">E</button>
+          <button type="button" id="R" onclick="addToInput('R')">R</button>
+          <button type="button" id="T" onclick="addToInput('T')">T</button>
+          <button type="button" id="Y" onclick="addToInput('Y')">Y</button>
+          <button type="button" id="U" onclick="addToInput('U')">U</button>
+          <button type="button" id="I" onclick="addToInput('I')">I</button>
+          <button type="button" id="O" onclick="addToInput('O')">O</button>
+          <button type="button" id="P" onclick="addToInput('P')">P</button>
+          <button type="button" id="backspace" onclick="funcDel()">BackSpace</button><br>
+          <button type="button" id="A" onclick="addToInput('A')">A</button>
+          <button type="button" id="S" onclick="addToInput('S')">S</button>
+          <button type="button" id="D" onclick="addToInput('D')">D</button>
+          <button type="button" id="F" onclick="addToInput('F')">F</button>
+          <button type="button" id="G" onclick="addToInput('G')">G</button>
+          <button type="button" id="H" onclick="addToInput('H')">H</button>
+          <button type="button" id="J" onclick="addToInput('J')">J</button>
+          <button type="button" id="K" onclick="addToInput('K')">K</button>
+          <button type="button" id="L" onclick="addToInput('L')">L</button>
+          <button type="submit" id="enter" onclick="simulateEnter()">Enter</button> <br>
+          <button type="button" id="Z" onclick="addToInput('Z')">Z</button>
+          <button type="button" id="X" onclick="addToInput('X')">X</button>
+          <button type="button" id="C" onclick="addToInput('C')">C</button>
+          <button type="button" id="V" onclick="addToInput('V')">V</button>
+          <button type="button" id="B" onclick="addToInput('B')">B</button>
+          <button type="button" id="N" onclick="addToInput('N')">N</button>
+          <button type="button" id="M" onclick="addToInput('M')">M</button><br>
+          <button type="button" id="space" onclick="addToInput(' ')">Space</button>
+          <button type="button" id="clear" onclick="funcClr()">Clear</button>   
+        </div>
+    </form>
+  <script>
+      // document.getElementById("Nearest").addEventListener("click", function() {
+      // console.log("Option 1 clicked");
+      // });
+      function funcClr() {
+        var input = document.getElementById("input");
+        input.value = "";
+      }
+      function funcDel() {
+        var input = document.getElementById("input");
+        input.value = input.value.substring(0, input.value.length -1);
+      }
+      function showKeyboard() {
+          var keyboard = document.getElementById("keyboard");
+          keyboard.style.display = "block";
+      }
+  
+      function addToInput(letter) {
+          var input = document.getElementById("input");
+          input.value += letter;
+      }
+      function simulateEnter() {
+          location.href="search"
+      }
+  </script>
+    </form>
+  <section class="dub-header">
+    <nav>   
+      <a href="/index/"><img src="{% static 'images/homeexloderlogo.png' %}"></a>            
+      <div class="nav-links">
+      <ul>
+          <li><a href="/index/">HOME</a></li>
+          <li><a href="about">ABOUT</a></li>
+          <li><a href="symptoms">SYMPTOMS</a></li>
+          <li><a href="hospital">HOSPITALS</a></li>
+          {% if request.user.is_authenticated %}
+          <li><a href="profile">{{ username|upper }}</a></li>
+          {% else %}
+          <li><a href="profile">PROFILE</a></li>
+          {% endif %}
+          {% if request.user.is_authenticated %}
+          <li><a href="logout">LOG-OUT</a></li>
+          {% else %}
+          <li><a href="login">LOG-IN</a></li>
+          {% endif %}
+      </ul>
+      </div>
+  </nav>
+  <section class="search">
+    <ul>
+      <div class="popuphead" id="popup-head">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="close-btn" onclick="closePopup()">&times;</div>
+            <h1>De La Salle <br> University Medical Center</h1>
+            <p class="popup-info">             
+                Specialization: <span id="specialization"></span> <br>
+                Hospital: <span id="hospital"></span> <br>
+                Schedule: <span id="schedule"></span> <br> <br>
+                Location: <iframe id="map" width="100%" height="450" frameborder="0" style="border:0" src=""></iframe>
+            </p>
+        </div>
+    </div>
+      <!-- {% for data in datas %}
+        <li onclick="togglePopup()">{{ data }}</li> 
+      {% endfor %} -->
+      {% for person in hospital_dict %}
+        <li onclick="togglePopup('{{ person.specialization }}', '{{ person.hospital }}', '{{ person.location }}', '{{ person.schedule }}',)">{{ person.doctor }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  <script>
+    function togglePopup(specialization, hospital, location, schedule){
+        document.body.style.overflow = "hidden";
+        document.getElementById("popup-head").classList.toggle("active");
+        document.getElementById('specialization').innerHTML = specialization;
+        document.getElementById('hospital').innerHTML = hospital;
+        document.getElementById('map').src = location;
+        document.getElementById('schedule').innerHTML = schedule;    
+        hospital.style.pointerEvents = "none";
+        row.style.pointerEvents = "none";
+        hospitalcol.style.pointerEvents = "none";
+        subheader.style.pointerEvents = "none";
+    }
+    function closePopup(){
+            document.getElementById("popup-head").classList.toggle("active");
+            document.body.style.overflow = "auto";
+        }
+  </script>
+</body>
+</html>

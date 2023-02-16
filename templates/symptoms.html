@@ -1,0 +1,759 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial scale=1.0">
+    <title> HoMe ExpeDiTioNer </title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css" integrity="sha384-z4tVnCr80ZcL0iufVdGQSUzNvJsKjEtqYZjiQrrYKlpGow+btDHDfQWkFjoaz/Zr" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/5b8bd885f6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<body>
+    <section class="subheader">
+        <form class="search-form" method="POST" action="search" autocomplete="off" onclick="showKeyboard()">
+            {% csrf_token %}
+            <input type="text" name="search_query" value="{{ request.POST.search_query }}" placeholder="Search Disease...." id="input">
+            <button type="submit"><i class="fas fa-search"></i></button>
+            <div id="keyboard" style="display:none;">
+                <button type="button" id="Q" onclick="addToInput('Q')">Q</button>
+                <button type="button" id="W" onclick="addToInput('W')">W</button>
+                <button type="button" id="E" onclick="addToInput('E')">E</button>
+                <button type="button" id="R" onclick="addToInput('R')">R</button>
+                <button type="button" id="T" onclick="addToInput('T')">T</button>
+                <button type="button" id="Y" onclick="addToInput('Y')">Y</button>
+                <button type="button" id="U" onclick="addToInput('U')">U</button>
+                <button type="button" id="I" onclick="addToInput('I')">I</button>
+                <button type="button" id="O" onclick="addToInput('O')">O</button>
+                <button type="button" id="P" onclick="addToInput('P')">P</button>
+                <button type="button" id="backspace" onclick="funcDel()">Delete</button><br>
+                <button type="button" id="A" onclick="addToInput('A')">A</button>
+                <button type="button" id="S" onclick="addToInput('S')">S</button>
+                <button type="button" id="D" onclick="addToInput('D')">D</button>
+                <button type="button" id="F" onclick="addToInput('F')">F</button>
+                <button type="button" id="G" onclick="addToInput('G')">G</button>
+                <button type="button" id="H" onclick="addToInput('H')">H</button>
+                <button type="button" id="J" onclick="addToInput('J')">J</button>
+                <button type="button" id="K" onclick="addToInput('K')">K</button>
+                <button type="button" id="L" onclick="addToInput('L')">L</button>
+                <button type="submit" id="enter" onclick="simulateEnter()">Enter</button> <br>
+                <button type="button" id="Z" onclick="addToInput('Z')">Z</button>
+                <button type="button" id="X" onclick="addToInput('X')">X</button>
+                <button type="button" id="C" onclick="addToInput('C')">C</button>
+                <button type="button" id="V" onclick="addToInput('V')">V</button>
+                <button type="button" id="B" onclick="addToInput('B')">B</button>
+                <button type="button" id="N" onclick="addToInput('N')">N</button>
+                <button type="button" id="M" onclick="addToInput('M')">M</button><br>
+                <button type="button" id="space" onclick="addToInput(' ')">Space</button>
+                <button type="button" id="clear" onclick="funcClr()">Clear</button>   
+            </div>
+        </form>
+        
+        <nav>   
+            <a href="/index/"><img src="{% static 'images/homeexloderlogo.png' %}"></a>            
+            <div class="nav-links">
+            <ul>
+                <li><a href="/index/">HOME</a></li>
+                <li><a href="about">ABOUT</a></li>
+                <li><a href="symptoms">SYMPTOMS</a></li>
+                <li><a href="hospital">HOSPITALS</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a href="profile">{{ username|upper }}</a></li>
+                {% else %}
+                <li><a href="profile">PROFILE</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <li><a href="logout">LOG-OUT</a></li>
+                {% else %}
+                <li><a href="login">LOG-IN</a></li>
+                {% endif %}
+            </ul>
+            </div>
+        </nav>
+        <h1>Symptoms for Diseases</h1><Br><br>
+        <ul>
+        <li><hr>ALLERGOLOGY<hr></li>
+            Asthma<br>
+          -Wheezing<br>
+       -Chest tightness<br>
+       -Shortness of breath<br>
+       -Coughing<br>
+       -Rapid breathing<br>
+       -Difficulty breathing<br>
+       -Chest pain or pressure<br><br>
+       
+            Allergic rhinitis (hay fever)<br>
+       -Sneezing<br>
+       -Runny or stuffy nose<br>
+       -Itching<br>
+       -Watery eyes<br>
+       -Dark circles under the eyes<br>
+       -Coughing<br>
+       -Fatigue<br>
+       -Headache<br>
+       -Itchy palate<br><br>
+       
+            Urticaria (hives)<br>
+       -Raised, red welts<br>
+       -Itching<br>
+       -Swelling<br>
+       -Flushing<br>
+       -Tingling<br><br>
+       <li><hr>CARDIOLOGY<hr></li>
+            Coronary artery disease (CAD)<br>
+       -Chest pain or discomfort<br>
+       -Shortness of breath<br>
+       -Fatigue<br>
+       -Lightheadedness or dizziness<br>
+       -Rapid or irregular heartbeat<br>
+       -Sweating<br>
+       -Nausea<br>
+       -Arm or jaw pain<br><br>
+            Heart failure<br>
+       -Shortness of breath<br>
+       -Fatigue<br>
+       -Swelling<br>
+       -Rapid or irregular heartbeat<br>
+       -Chest pain or discomfort<br>
+       -Persistent coughing or wheezing<br>
+       -Reduced ability to exercise<br>
+       -Decreased appetite or weight gain<br><br>
+       
+            Hypertension (high blood pressure)<br>
+       -Headache<br>
+       -Dizziness<br>
+       -Chest pain<br>
+       -Shortness of breath<br>
+       -Rapid or irregular heartbeat<br>
+       -Blurred vision<br>
+       -Nausea or vomiting<br>
+       -Nosebleeds<br><br>
+            Pulmonary embolism<br>
+       -Shortness of breath<br>
+       -Chest pain<br>
+       -Rapid or irregular heartbeat<br>
+       -Sweating<br>
+       -Coughing<br>
+       -Lightheadedness or dizziness<br>
+       -Fainting<br>
+       -Swelling<br><br>
+       <li><hr>DENTAL<hr></li>
+            Periodontal disease<br>
+       -Bleeding gums<br>
+       -Red, swollen, or tender gums<br>
+       -Receding gums<br>
+       -Loose or shifting teeth<br>
+       -Persistent bad breath or bad taste in the mouth<br>
+       -Pus between the gums and teeth<br>
+       -Changes in bite or fit of dentures<br><br>
+            Toothache<br>
+       -Sharp or dull pain in the affected tooth<br>
+       -Sensitivity to hot or cold temperatures<br>
+       -Sweet sensitivity<br>
+       -Pain when biting or chewing<br>
+       -Swelling in the area around the affected tooth<br>
+       -Tenderness in the area around the affected tooth<br>
+       -Ear pain<br><br>
+            Temporomandibular joint (TMJ) disorder<br>
+       -Pain or tenderness in the jaw<br>
+       -Popping or clicking sounds in the jaw<br>
+       -Difficulty or pain when opening or closing the mouth<br>
+       -Lockjaw<br>
+       -Jaw pain or stiffness<br>
+       -Tension headaches<br>
+       -Dizziness or vertigo<br><br>
+            Dry mouth<br>
+       -Thirst<br>
+       -Sticky, dry feeling in the mouth<br>
+       -Cracked or dry lips<br>
+       -Sore throat<br>
+       -Difficulty speaking<br>
+       -Difficulty eating or swallowing<br>
+       -Bad breath<br>
+       -Changes in taste<br><br>
+       <li><hr>DERMATOLOGY<hr></li>
+            Acne<br>
+       -Blackheads<br>
+       -Whiteheads<br>
+       -Pimples<br>
+       -Cysts<br>
+       -Papules<br>
+       -Nodules<br>
+       -Scars<br>
+       -Oily skin<br><br>
+            Atopic dermatitis (eczema)<br>
+       -Dry, scaly, and itchy skin<br>
+       -Rash<br>
+       -Bumps<br>
+       -Blisters<br>
+       -Thickened skin<br>
+       -Darkened skin<br>
+       -Lichenification<br><br>
+            Alopecia (hair loss)<br>
+       -Gradual or sudden hair thinning<br>
+       -Bald patches<br>
+       -Receding hairline<br>
+       -Loss of body hair<br>
+       -Short, broken hairs<br>
+       -Round or oval bald patches<br><br>
+            Melanoma (skin cancer)<br>
+       -New or changing moles<br>
+       -Asymmetrical moles<br>
+       -Irregular border<br>
+       -Uneven color<br>
+       -Diameter larger than a pencil eraser<br>
+       -Itching, pain, or bleeding<br>
+       -Dark or black spots<br><br>
+            Fungal skin infections (such as ringworm or athlete's foot)<br>
+       -Rash<br>
+       -Blisters<br>
+       -Scaling or flaking skin<br>
+       -Itching: <br>
+       -Burning or stinging<br>
+       -Discoloration<br>
+       -Cracking or peeling skin<br><br>
+            Bacterial skin infections (such as impetigo)<br>
+       -Blisters<br>
+       -Rashes<br>
+       -Pus-filled sores<br>
+       -Swelling<br>
+       -Pain<br>
+       -Warmth or redness<br>
+       -Crusting or scabbing<br><br>
+            Viral skin infections (such as shingles or warts)<br>
+       -Blisters<br>
+       -Rash<br>
+       -Itching<br>
+       -Pain<br>
+       -Discoloration<br><br>
+            Diabetes<br>
+       -Increased thirst and frequent urination<br>
+       -Hunger, even after eating<br>
+       -Blurred vision<br>
+       -Fatigue<br>
+       -Slow wound healing<br>
+       -Numbness or tingling in the feet and hands<br>
+       -Recurrent infections, such as yeast infections or skin infections<br><br>
+       <li><hr>GASTROENTEROLOGY<hr></li> 
+            Gastroesophageal reflux disease (GERD)<br>
+       -Heartburn<br>
+       -Regurgitation<br>
+       -Chest pain<br>
+       -Dry cough<br>
+       -Difficulty swallowing<br>
+       -Sore throat<br>
+       -Asthma symptoms<br>
+       -Hoarse voice<br>
+       -Bad breath<br>
+       -Nausea<br><br>
+            Irritable bowel syndrome (IBS)<br>
+       -Abdominal pain or cramping<br>
+       -Diarrhea<br>
+       -Constipation<br>
+       -Bloating<br>
+       -Gas<br>
+       -Mucus in the stool<br>
+       -Urgency<br>
+       -Altered bowel movements<br>
+       -Abdominal distension<br>
+       -Rectal discomfort<br><br>
+            Inflammatory bowel disease (IBD)<br>
+       -Abdominal pain<br>
+       -Diarrhea<br>
+       -Blood in the stool<br>
+       -Weight loss<br>
+       -Fatigue<br>
+       -Anemia<br>
+       -Fever<br>
+       -Joint pain<br>
+       -Skin lesions<br>
+       -Abdominal distension<br><br>
+            Peptic ulcer disease<br>
+       -Abdominal pain<br>
+       -Heartburn<br>
+       -Nausea<br>
+       -Bloating<br>
+       -Loss of appetite<br>
+       -Weight loss<br>
+       -Fatigue<br>
+       -Black or tarry stools<br>
+       -Vomiting blood<br><br>
+            Hepatitis<br>
+       -Fatigue<br>
+       -Nausea<br>
+       -Loss of appetite<br>
+       -Abdominal pain<br>
+       -Dark urine<br>
+       -Clay-colored stools<br>
+       -Jaundice<br>
+       -Itching<br>
+       -Fever<br><br>
+            Pancreatitis<br>
+       -Abdominal pain<br>
+       -Nausea and vomiting<br>
+       -Fever<br>
+       -Rapid pulse<br>
+       -Sweating<br>
+       -Dehydration<br>
+       -Diarrhea<br>
+       -Weight loss<br>
+       -Jaundice<br><br>
+            Gastroparesis<br>
+       -Nausea<br>
+       -Vomiting<br>
+       -Abdominal bloating<br>
+       -Abdominal pain<br>
+       -Acid reflux<br>
+       -Weight loss<br>
+       -Early satiety<br>
+       -Poor blood sugar control in diabetics<br><br>
+            Colorectal cancer<br>
+       -Change in bowel habits<br>
+       -Rectal bleeding<br>
+       -Abdominal pain or cramping<br>
+       -Weakness or fatigue<br>
+       -Unexplained weight loss<br>
+       -Anemia<br>
+       -Gas or bloating<br><br>
+       <li><hr>HEMATOLOGY<hr></li>
+            Anemia<br>
+       -Fatigue and weakness<br>
+       -Pale skin<br>
+       -Rapid heartbeat<br>
+       -Shortness of breath<br>
+       -Dizziness or lightheadedness<br>
+       -Cold hands and feet<br>
+       -Brittle nails<br>
+       -Headache<br>
+       -Irritability or difficulty concentrating<br><br>
+            Hemophilia<br>
+       -Excessive bleeding<br>
+       -Unexpected or spontaneous bleeding<br>
+       -Large or deep bruises<br>
+       -Joint pain and swelling<br>
+       -Prolonged bleeding after injury or surgery<br>
+       -Nosebleeds<br>
+       -Bloody gums or mouth<br><br>
+            Leukemia<br>
+       -fatigue <br>
+       -weakness<br>
+       -skin <br>
+       -easy bruising or bleeding <br>
+       -frequent infections<br>
+       -bone pain or tenderness <br>
+       -swollen lymph nodes<br>
+       -loss of appetite<br>
+       -weight loss<br>
+       -fever <br>
+       -night sweats<br>
+       -shortness of breath<br><br>
+            Lymphoma<br>
+       -swollen lymph nodes<br>
+       -fatigue, fever<br>
+       -night sweats <br>
+       -weight loss<br>
+       -loss of appetite <br>
+       -itchy skin<br>
+       -painless lumps in the neck <br>
+       -underarm<br>
+       -stomach or groin<br><br>
+       
+       
+       <li><hr>INFECTIOUS DISEASE<hr></li>
+            Influenza (the flu)<br>
+       -Fever<br>
+       -Cough<br>
+       -Sore throat<br>
+       -Runny or stuffy nose<br>
+       -Body or muscle aches<br>
+       -Headache<br>
+       -Fatigue (tiredness)<br><br>
+            Tuberculosis (TB)<br>
+       -Persistent cough lasting 3 or more weeks<br>
+       -Chest pain<br>
+       -Coughing up blood or sputum<br>
+       -Fatigue<br>
+       -Loss of appetite and weight loss<br>
+       -Chills and night sweats<br>
+       -Fever<br>
+       -Shortness of breath<br><br>
+            Human immunodeficiency virus (HIV)/Acquired immunodeficiency syndrome (AIDS)<br>
+       -Flu-like symptoms such as fever, fatigue, muscle aches, and headache<br>
+       -Sore throat<br>
+       -Rash<br>
+       -Night sweats<br>
+       -Swollen lymph nodes<br><br>
+            Malaria<br>
+       -Fever<br>
+       -Chills<br>
+       -Headache<br>
+       -Muscle pain<br>
+       -Fatigue<br>
+       -Nausea and vomiting<br>
+       -Sweats (often occurring at night)<br>
+       -Diarrhea<br>
+       -Anemia<br>
+       -Low blood pressure<br><br>
+            Hepatitis B and C<br>
+       -Fatigue<br>
+       -Nausea<br>
+       -Loss of appetite<br>
+       -Abdominal pain or discomfort<br>
+       -Dark urine<br>
+       -Clay-colored bowel movements<br>
+       -Joint pain<br>
+       -Jaundice (yellowing of the skin and eyes)<br>
+       -Itching<br>
+       -Flu-like symptoms (fever, headache, muscle and joint aches)<br><br>
+            SARS-CoV-2 (the virus that causes COVID-19)<br>
+       -Fever<br>
+       -Dry cough<br>
+       -Fatigue<br>
+       -Shortness of breath<br>
+       -Body aches and muscle pain<br>
+       -Headache<br>
+       -Sore throat<br>
+       -Loss of taste or smell<br>
+       -Congestion or runny nose<br>
+       -Nausea or vomiting<br>
+       -Diarrhea<br><br>
+            Chickenpox<br>
+       -Fever<br>
+       -Fatigue<br>
+       -Headache<br>
+       -Sore throat<br>
+       -Loss of appetite<br>
+       -Itching<br>
+       -A rash of red spots <br>
+       -Body aches.<br>
+       -Nausea.<br><br>
+            Pneumonia<br>
+       -Cough, with or without mucus or phlegm<br>
+       -Chest pain or discomfort when breathing or coughing<br>
+       -Fatigue or weakness<br>
+       -Fever<br>
+       -Sweating or chills<br>
+       -Shortness of breath<br>
+       -Rapid breathing or rapid heart rate <br>
+       -Low appetite or nausea<br>
+       -Muscle or joint aches<br><br>
+       <li><hr>NEPHROLOGY<hr></li>
+            Acute Kidney Injury (AKI)<br>
+       -Decreased urine output<br>
+       -Swelling in legs, ankles, and feet<br>
+       -Nausea and vomiting<br>
+       -Shortness of breath<br>
+       -Fatigue and weakness<br>
+       -Confusion<br>
+       -Chest pain<br>
+       -Seizures or muscle twitching (in severe cases)<br><br>
+            Chronic Kidney Disease (CKD)<br>
+       -Fatigue and weakness<br>
+       -Swelling in the feet, ankles, legs, face, and/or hands<br>
+       -Dry and itchy skin<br>
+       -Nausea and loss of appetite<br>
+       -Trouble sleeping<br>
+       -Muscle cramps or twitching<br>
+       -Changes in the amount of urine<br>
+       -Decreased mental sharpness<br>
+       -Shortness of breath<br>
+       -Chest pain or pressure<br>
+       -Irregular heartbeat<br>
+       -High blood pressure<br>
+       -Darkening of the skin, particularly on the neck or in the groin area<br>
+       -Unexpected weight loss or gain<br>
+       -Bone pain and tenderness<br>
+       -Numbness or tingling in the hands and feet<br><br>
+            Glomerulonephritis<br>
+       -Swelling in legs, ankles, or feet<br>
+       -High blood pressure<br>
+       -Foamy or bloody urine<br>
+       -Fatigue<br>
+       -Decreased urination<br>
+       -Itching skin<br>
+       -Nausea or vomiting<br>
+       -Muscle cramps or twitching<br>
+       -Rapid weight gain<br>
+       -Shortness of breath.<br><br>
+            Nephrotic Syndrome<br>
+       -Swelling in various parts of the body, such as face, eyes, ankles, legs, and/or abdomen<br>
+       -Foamy appearance of urine<br>
+       -Weight gain<br>
+       -Increased need to urinate during the night<br>
+       -Decreased urine output<br>
+       -Fatigue and/or weakness<br>
+       -Increased blood pressure<br>
+       -Proteinuria (excessive protein in urine)<br><br>
+            Polycystic Kidney Disease (PKD)<br>
+       -Abdominal pain or tenderness<br>
+       -Back or side pain<br>
+       -Enlarged or cyst-filled kidneys<br>
+       -High blood pressure<br>
+       -Kidney stones<br>
+       -Urinary tract infections<br>
+       -Blood in the urine (hematuria)<br>
+       -Decreased kidney function<br>
+       -Urinary urgency and frequency<br><br>
+            Urinary Tract Infections (UTI)<br>
+       -Pain or burning during urination<br>
+       -Frequent urge to urinate<br>
+       -Passing small amounts of urine<br>
+       -Strong, persistent urge to urinate<br>
+       -Passing frequent, small amounts of urine<br>
+       -Cloudy or strong-smelling urine<br>
+       -Urine that appears red, bright pink or brown, due to blood in the urine<br>
+       -Pain in the lower abdomen or back<br>
+       -Fatigue<br>
+       -Nausea<br>
+       -Vomiting<br><br>
+       <li><hr>NEUROLOGY<hr></li>
+            Alzheimer's disease<br>
+       -Memory loss, especially short-term memory<br>
+       -Difficulty with language, such as finding the right words<br>
+       -Difficulty with routine tasks, such as getting dressed or brushing teeth<br>
+       -Confusion about time, place or person<br>
+       -Changes in mood or behavior, such as depression or anxiety<br>
+       -Difficulty with spatial orientation, such as getting lost in familiar places<br>
+       -Changes in personality or motivation<br>
+       -Paranoia, delusions or hallucinations.<br><br>
+            Parkinson's disease<br>
+       -Tremors or shaking in hands, arms, legs, jaw or head<br>
+       -Stiffness or rigidity of muscles<br>
+       -Slow movement and difficulty with initiating movement (bradykinesia)<br>
+       -Poor balance and coordination<br>
+       -Loss of automatic movements, such as blinking or smiling<br>
+       -Speech changes, including speaking softly or in a monotone voice<br>
+       -Writing difficulties<br>
+       -Depression and anxiety<br>
+       -Memory and cognitive changes<br>
+       -Constipation and other digestive problems.<br><br>
+            Epilepsy<br>
+       -Seizures<br>
+       -Temporary confusion<br>
+       -A staring spell<br>
+       -Uncontrollable jerking movements of the arms and legs<br>
+       -Loss of consciousness or awareness<br>
+       -Mental confusion<br>
+       -Strange feelings, such as fear or déjà vu<br>
+       -Sudden jerking movements of the body, limbs or face<br>
+       -Loss of bladder control or bowel function during a seizure.<br><br>
+            Migraines<br>
+       -Severe headache, usually on one side of the head<br>
+       -Throbbing or pulsing pain<br>
+       -Nausea and vomiting<br>
+       -Sensitivity to light and sound<br>
+       -Visual aura, such as flashing lights or blind spots<br>
+       -Fatigue and lack of energy<br>
+       -Stiff neck<br>
+       -Mood changes, such as irritability or depression.<br><br>
+            Stroke<br>
+       -Sudden weakness or numbness in the face, arm, or leg, especially on one side of the body<br>
+       -Sudden confusion, trouble speaking or understanding speech<br>
+       -Sudden trouble seeing in one or both eyes<br>
+       -Sudden trouble walking, dizziness, loss of balance or coordination<br>
+       -Sudden severe headache with no known cause<br>
+       -Nausea and vomiting<br>
+       -Loss of consciousness or passing out.<br><br>
+            Brain tumor<br>
+       -Headaches (often worse in the morning)<br>
+       -Nausea and vomiting<br>
+       -Seizures<br>
+       -Memory loss and confusion<br>
+       -Changes in vision, speech or hearing<br>
+       -Weakness or numbness in the arms or legs<br>
+       -Trouble with balance or coordination<br>
+       -Personality or mood changes<br>
+       -Increased pressure within the skull (seen as headache, nausea, vomiting, drowsiness, confusion, and in severe cases, unconsciousness)<br><br>
+            Spinal cord injury<br>
+       -Numbness or loss of sensation in the limbs<br>
+       -Weakness or partial paralysis of the limbs<br>
+       -Loss of bladder and/or bowel control<br>
+       -Severe back pain or pressure in the neck, head, or back<br>
+       -Spasms or muscle spasms<br>
+       -Changes in sexual function<br>
+       -Changes in reflexes<br>
+       -Difficulty breathing or coughing<br>
+       -Unusual sensations such as tingling or burning<br><br>
+            Restless Legs Syndrome (RLS)<br>
+       -Uncomfortable sensations in the legs, such as crawling, tingling, or burning, usually accompanied by an irresistible urge to move the legs.<br>
+       -Symptoms typically occur in the evening or nighttime and can interfere with sleep.<br>
+       -Relief from symptoms with movement, such as stretching, walking, or massaging the legs.<br>
+       -Increased symptoms during periods of rest or inactivity.<br>
+       -Symptoms can also occur in the arms and other parts of the body.<br>
+       -Excessive daytime sleepiness or fatigue.<br><br>
+       <li><hr>OBSTETRICS<hr></li>
+            Ectopic pregnancy<br>
+       -Abnormal vaginal bleeding<br>
+       -Pelvic pain or discomfort, which may be severe<br>
+       -Shoulder pain (referred pain)<br>
+       -Weakness or fainting<br>
+       -Low blood pressure<br>
+       -Dizziness or lightheadedness<br>
+       -Abdominal pain or cramping<br>
+       -Nausea and vomiting<br>
+       -Constipation<br><br>
+            Miscarriage<br>
+       -Vaginal bleeding or spotting<br>
+       -Abdominal pain or cramping<br>
+       -Lower back pain<br>
+       -Passing of tissue or clots<br>
+       -Loss of pregnancy symptoms (such as morning sickness)<br><br>
+            Preterm labor<br>
+       -Contractions that occur regularly and become increasingly intense<br>
+       -Low back pain or pressure<br>
+       -Change in vaginal discharge (increased or thick and mucus-like)<br>
+       -Pelvic discomfort or a heavy, dull ache in the lower abdomen<br>
+       -Flu-like symptoms such as nausea, vomiting, or diarrhea<br>
+       -A sense of pelvic pressure, like the baby is pushing down<br>
+       -A change in the baby's movement patterns<br>
+       -Uterine contractions that may or may not be painful<br><br>
+            Ovarian cyst.<br>
+       -Pelvic pain or discomfort, especially on one side of the pelvis<br>
+       -A full or bloated feeling in the lower abdomen<br>
+       -Pain or pressure during physical activity or intercourse<br>
+       -Nausea or vomiting<br>
+       -Breast tenderness<br>
+       -Irregular periods or heavy bleeding<br>
+       -Pain during bowel movements or urination<br><br>
+       <li><hr>OPHTHALMOLOGY<hr></li>
+            Cataracts<br>
+       -Blurry or hazy vision<br>
+       -Sensitivity to light and glare<br>
+       -Difficulty with night vision<br>
+       -Double vision in one eye<br>
+       -Seeing "halos" around lights<br>
+       -Fading or yellowing of colors<br>
+       -Increasing nearsightedness<br>
+       -A need for brighter light for reading and other activities<br>
+       -Frequent changes in eyeglass or contact lens prescription.<br><br>
+            Glaucoma<br>
+       -Gradual loss of peripheral vision<br>
+       -Blurred vision<br>
+       -Halos around lights<br>
+       -Eye pain<br>
+       -Headache<br>
+       -Nausea and vomiting<br>
+       -Red eyes<br>
+       -Sudden vision loss in one eye<br><br>
+            Dry eye syndrome<br>
+       -Burning or stinging in the eyes<br>
+       -A sensation of having a foreign body in the eye<br>
+       -Pain or discomfort in the eye<br>
+       -Tearing or watery eyes<br>
+       -Blurred vision or sensitivity to light<br>
+       -Redness or inflammation of the eye<br>
+       -Heavy eyelids<br>
+       -A feeling of dryness, scratchiness, or sand in the eye.<br><br>
+            Strabismus (eye turn)<br>
+       -One eye that turns inward or outward while the other eye looks forward<br>
+       -Double vision in one eye or alternating between eyes<br>
+       -Eye fatigue or headaches when using one eye for prolonged periods<br>
+       -Tilting or tilting of the head to maintain single vision<br>
+       -Squinting one eye<br>
+       -Poor depth perception<br>
+       -Eye muscle weakness or amblyopia (lazy eye) in one eye.<br><br>
+       <li><hr>ORTHOPEDICS<hr></li>
+            Arthritis<br><br>
+            Osteoporosis<br><br>
+            Tendinitis<br><br>
+            Bursitis<br><br>
+            Fractures<br><br>
+            Dislocations<br><br>
+            Sprains and strains<br><br>
+            Tendinopathy<br><br>
+            Carpal tunnel syndrome<br><br>
+            Tennis elbow (lateral epicondylitis)<br><br>
+            Golfer's elbow (medial epicondylitis)<br><br>
+            Hip impingement<br><br>
+            Patellofemoral pain syndrome (runner's knee)<br><br>
+            Shin splints<br><br>
+            Plantar fasciitis<br><br>
+       <li><hr>OTORHINOLARYNGOLOGY<hr></li>
+            Otitis media (ear infection)<br>
+       -Pain or pressure in the ear<br>
+       -Temporary hearing loss<br>
+       -Drainage from the ear<br><br>
+            Sinusitis<br>
+       -Pain or pressure in the sinuses<br>
+       -Nasal congestion<br>
+       -Headache<br>
+       -Fatigue<br><br>
+            Tonsillitis<br>
+       -Pain or soreness in the throat<br>
+       -Swollen tonsils<br>
+       -Difficulty swallowing<br>
+       -Fever<br><br>
+            Snoring<br>
+       -Excessive loud and disruptive snoring<br>
+       -Choking or gasping during sleep<br>
+       -Excessive daytime sleepiness<br><br>
+            Hearing loss<br>
+       -Gradual or sudden loss of hearing in one or both ears<br>
+       -Difficulty understanding speech<br>
+       -Tinnitus (ringing in the ears)<br><br>
+            Vertigo<br>
+       -Dizziness<br>
+       -Loss of balance<br>
+       -Nausea<br>
+       -Vomiting<br><br>
+            Sleep apnea<br>
+       -Snoring<br>
+       -Choking or gasping during sleep<br>
+       -Excessive daytime sleepiness<br>
+       -Restless sleep.<br>
+    </ul>
+    </section>
+    <script>
+        function funcClr() {
+            var input = document.getElementById("input");
+            input.value = "";
+        }
+        function funcDel() {
+            var input = document.getElementById("input");
+            input.value = input.value.substring(0, input.value.length -1);
+        }
+        function showKeyboard() {
+            var keyboard = document.getElementById("keyboard");
+            keyboard.style.display = "block";
+            var textBox = document.getElementsByClassName("text-box")[0];
+            var textBoxP = textBox.getElementsByTagName("p")[0];
+            var textBoxA = textBox.getElementsByTagName("a")[0];
+            textBoxP.style.visibility = "hidden";
+            textBoxA.style.visibility = "hidden";
+            textBox.style.pointerEvents = "none";
+        }
+      
+        function addToInput(letter) {
+            var input = document.getElementById("input");
+            input.value += letter;
+        }
+      
+        document.getElementById("input").onfocus = function() {
+          showKeyboard();
+        }
+        
+        document.addEventListener("click", function(event) {
+          var input = document.getElementById("input");
+          var keyboard = document.getElementById("keyboard");
+      
+          if (event.target !== input && !keyboard.contains(event.target)) {
+            keyboard.style.display = "none";
+            var textBox = document.getElementsByClassName("text-box")[0];
+            var textBoxP = textBox.getElementsByTagName("p")[0];
+            var textBoxA = textBox.getElementsByTagName("a")[0];
+            textBoxP.style.visibility = "visible";
+            textBoxA.style.visibility = "visible";
+            textBox.style.pointerEvents = "auto";
+          }
+        });
+        
+        function simulateEnter() {
+          location.href="search"
+        }
+    </script>
+</body>
+</html>

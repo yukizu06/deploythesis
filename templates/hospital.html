@@ -1,0 +1,306 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <title> HoMe ExpeDiTioNer </title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="subheader">
+        <nav>   
+            <a href="/index/"><img src="{% static 'images/homeexloderlogo.png' %}"></a>            
+            <div class="nav-links">
+            <ul>
+                <li><a href="/index/">HOME</a></li>
+                <li><a href="about">ABOUT</a></li>
+                <li><a href="symptoms">SYMPTOMS</a></li>
+                <li><a href="hospital">HOSPITALS</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a href="profile">{{ username|upper }}</a></li>
+                {% else %}
+                <li><a href="profile">PROFILE</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <li><a href="logout">LOG-OUT</a></li>
+                {% else %}
+                <li><a href="login">LOG-IN</a></li>
+                {% endif %}
+            </ul>
+            </div>
+        </nav>
+        <h1>Hospitals</h1>
+    </section>
+<!---------- hospital ---------->
+    <section class="hospital">
+        <h1>Hospitals</h1>
+        <p>These are the hospitals in Dasmarinas</p>
+    
+        <div class="row">
+            <div class="hospitalcol">
+                <h3>De La Salle University Medical Center</h3>
+                <div class="popup" id="popup-1">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="closePopup()">&times;</div>
+                        <h1>De La Salle <br> University Medical Center</h1>
+                        <p class="popup-info">
+                            <section class="hospitalmap">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d15463.247653939443!2d120.94518575915997!3d14.322355379771968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x3397d5b5d4288969%3A0xf60c7376ae871b2a!2sFatima%20I%2C%20Cavite!3m2!1d14.3190169!2d120.9621767!4m5!1s0x3397d45537645401%3A0xe4b3b238d5bdbfd9!2sDe%20La%20Salle%20University%20Medical%20Center%2C%20Gov%2C%20D.%20Mangubat%20St%2C%20Avenue%2C%20Dasmari%C3%B1as%2C%204114%20Cavite!3m2!1d14.3271819!2d120.9433923!5e0!3m2!1sen!2sph!4v1673589560396!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </section>
+                            For urgent concerns, kindly contact the Information Section at (046) 481-8000 or (02) 8988-3100, local 1206 or 2001.<br><br><br>
+                            Suggestion on how to get to the hospital: Sumakay ng jeep byaheng pa-Bayan, Imus, Bacoor, Pala-pala at sabihin sa driver na ibaba ka sa UMC.
+                        </p>
+                    </div>
+                </div>
+                <button onclick="togglePopup()"><img src="{% static 'images/UMC.jpg' %}"></button>
+            </div>
+
+            <div class="hospitalcol">
+                <h3>Pagamutan ng Dasmarinas</h3>
+                <div class="popup" id="popup-2">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="closePopup1()">&times;</div>
+                        <h1>Pagamutan ng Dasmarinas</h1>
+                        <p>
+                            <section class="hospitalmap">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3865.8213505562926!2d120.96052874971824!3d14.321807537639929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x3397d5b5d4288969%3A0xf60c7376ae871b2a!2sFatima%20I%2C%20Cavite!3m2!1d14.3190169!2d120.9621767!4m5!1s0x3397d5b4d8d0a3b7%3A0x75cd8c961143c944!2sPagamutan%20ng%20Dasmari%C3%B1as%2C%20Dasmari%C3%B1as%2C%20Cavite!3m2!1d14.323002599999999!2d120.961666!5e0!3m2!1sen!2sph!4v1673594244833!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </section>
+                            Suggestion on how to get to the hospital: Pwedeng lakarin nalang galang sa Fatima 1 pero kung hindi kaya ay sumakay ng jeep at magpababa sa water district o sa pagamutan
+                        </p>
+                    </div>
+                </div>
+                <button onclick="togglePopup1()"><img src="{% static 'images/pagamutan.jpg' %}"></button>
+            </div>
+
+            <div class="hospitalcol">
+                <h3>Asia Medic Family Hospital & Medical Center</h3>
+                <div class="popup" id="popup-3">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="closePopup2()">&times;</div>
+                        <h1>Asia Medic Family Hospital & Medical Center</h1>
+                        <p>
+                            <section class="hospitalmap">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d30929.43276972287!2d120.95266126260111!3d14.301024485214372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x3397d5b5d4288969%3A0xf60c7376ae871b2a!2sFatima%20I%2C%20Cavite!3m2!1d14.3190169!2d120.9621767!4m5!1s0x3397d58aad37f693%3A0x8553c49a1b86d9cc!2sAsia%20Medic%20Family%20Hospital%20%26%20Medical%20Center%2C%20Pala-pala%20Road%2C%20Dasmari%C3%B1as%2C%20Cavite!3m2!1d14.298776199999999!2d120.95660819999999!5e0!3m2!1sen!2sph!4v1673595692629!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </section>
+                        </p>
+                    </div>
+                </div>
+                <button onclick="togglePopup2()"><img src="{% static 'images/asia-medic.jpg' %}"></button>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="hospitalcol">
+                <h3>Dasmarinas City Medical Center</h3>
+                <div class="popup" id="popup-4">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="closePopup3()">&times;</div>
+                        <h1>Dasmarinas City <br> Medical Center</h1>
+                        <p>
+                            <section class="hospitalmap">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d30924.794396954127!2d120.95187396232751!3d14.334692634781328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x3397d5b5d4288969%3A0xf60c7376ae871b2a!2sFatima%20I%2C%20Cavite!3m2!1d14.3190169!2d120.9621767!4m5!1s0x3397d404a10368bd%3A0xf5bb2e5d77ea867!2sDasmari%C3%B1as%20City%20Medical%20Center%2C%20Crossing%2C%20Salawag%2C%20Dasmari%C3%B1as%2C%20Cavite!3m2!1d14.3530591!2d120.9814308!5e0!3m2!1sen!2sph!4v1673596844693!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </section>
+                        </p>
+                    </div>
+                </div>
+                <button onclick="togglePopup3()"><img src="{% static 'images/dcmc.jpg' %}"></button>
+            </div>
+
+            <div class="hospitalcol">
+                <h3>Emilio Aguinaldo College Medical Center-Cavite</h3>
+                <div class="popup" id="popup-5">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="closePopup4()">&times;</div>
+                        <h1>Emilio Aguinaldo <br> College Medical <br> Center-Cavite</h1>
+                        <p>
+                            <section class="hospitalmap">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d30924.461924976677!2d120.93441451127683!3d14.337102946744709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x3397d5b5d4288969%3A0xf60c7376ae871b2a!2sFatima%20I%2C%20Cavite!3m2!1d14.3190169!2d120.9621767!4m5!1s0x3397d48ac6a58f0f%3A0x916466355c48cfcc!2sEmilio%20Aguinaldo%20College%20Medical%20Center%20-%20Cavite%2C%20Salitran%2C%20Dasmari%C3%B1as%2C%20Cavite!3m2!1d14.3486321!2d120.9397657!5e0!3m2!1sen!2sph!4v1673597154905!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </section>
+                            Suggestion on how to get to the hospital: Sumakay ng jeep papuntang Imus, Baclaran, Bacoor, o Zapote at bumaba bago dumating o mismong sa Savmore Salitran at maglakad papasok sa eskinita bago dumating ng Savemore
+                        </p>
+                    </div>
+                </div>
+                <button onclick="togglePopup4()"><img src="{% static 'images/eac.jpg' %}"></button>
+            </div>
+
+            <div class="hospitalcol">
+                <h3>St. Paul Hospital</h3>
+                <div class="popup" id="popup-6">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="closePopup5()">&times;</div>
+                        <h1>St. Paul Hospital</h1>
+                        <p>
+                            <section class="hospitalmap">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3865.8323824328363!2d120.96063784971815!3d14.321167087655192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x3397d5b5d4288969%3A0xf60c7376ae871b2a!2sFatima%20I%2C%20Cavite!3m2!1d14.3190169!2d120.9621767!4m5!1s0x3397d5b5372d5823%3A0x2461de93fc5da17c!2sSt%20Paul%20Hospital%2C%20Dasmari%C3%B1as%2C%20Cavite!3m2!1d14.323029199999999!2d120.9630773!5e0!3m2!1sen!2sph!4v1673597373826!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </section>
+                            Suggestion on how to get to the hospital: Pwedeng lakarin nalang galang sa Fatima 1 pero kung hindi kaya ay sumakay ng jeep at magpababa sa St. Paul
+                        </p>
+                    </div>
+                </div>
+                <button onclick="togglePopup5()"><img src="{% static 'images/st paul.jpg' %}"></button>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="hospitalcol">
+                <h3>GMF Hospital</h3>
+                <div class="popup" id="popup-7">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="closePopup6()">&times;</div>
+                        <h1>GMF Hospital</h1>
+                        <p>
+                            <section class="hospitalmap">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d15463.1572432556!2d120.94243395916027!3d14.323667429636917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x3397d5b5d4288969%3A0xf60c7376ae871b2a!2sFatima%20I%2C%20Cavite!3m2!1d14.3190169!2d120.9621767!4m5!1s0x3397d4fe39ba6e2d%3A0xf1527eb85456362f!2sGMF%20Hospital%2C%20Camerino%20Avenue%2C%20Dasmari%C3%B1as%2C%20Cavite!3m2!1d14.328477999999999!2d120.93802769999999!5e0!3m2!1sen!2sph!4v1673597654006!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </section>
+                        </p>
+                    </div>
+                </div>
+                <button onclick="togglePopup6()"><img src="{% static 'images/gmf.jpg' %}"></button>
+            </div>
+
+            <div class="hospitalcol">
+                <h3>M.V. Santiago Medical Center</h3>
+                <div class="popup" id="popup-8">
+                    <div class="overlay"></div>
+                    <div class="content">
+                        <div class="close-btn" onclick="closePopup7()">&times;</div>
+                        <h1>M.V. Santiago <br> Medical Center </h1>
+                        <p>
+                            <section class="hospitalmap">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d30929.12531672392!2d120.93060687847102!3d14.303258568523038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x3397d5b5d4288969%3A0xf60c7376ae871b2a!2sFatima%20I%2C%20Cavite!3m2!1d14.3190169!2d120.9621767!4m5!1s0x3397d5784b51dea7%3A0xdee815137fe1d834!2sM.V.%20Santiago%20Medical%20Center%20%40%20FCIE%2C%20Dasmari%C3%B1as%2C%20Cavite!3m2!1d14.2917689!2d120.9324505!5e0!3m2!1sen!2sph!4v1673597727864!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </section>
+                        </p>
+                    </div>
+                </div>
+                <button onclick="togglePopup7()"><img src="{% static 'images/MVSMC.jpg' %}"></button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function togglePopup(){
+            document.getElementById("popup-1").classList.toggle("active");
+            document.body.style.overflow = "hidden";
+            hospital.style.pointerEvents = "none";
+            row.style.pointerEvents = "none";
+            hospitalcol.style.pointerEvents = "none";
+            subheader.style.pointerEvents = "none";
+        }
+
+        function togglePopup1(){
+            document.getElementById("popup-2").classList.toggle("active");
+            document.body.style.overflow = "hidden";
+            hospital.style.pointerEvents = "none";
+            row.style.pointerEvents = "none";
+            hospitalcol.style.pointerEvents = "none";
+            subheader.style.pointerEvents = "none";
+        }
+
+        function togglePopup2(){
+            document.getElementById("popup-3").classList.toggle("active");
+            document.body.style.overflow = "hidden";
+            hospital.style.pointerEvents = "none";
+            row.style.pointerEvents = "none";
+            hospitalcol.style.pointerEvents = "none";
+            subheader.style.pointerEvents = "none";
+        }
+
+        function togglePopup3(){
+            document.getElementById("popup-4").classList.toggle("active");
+            document.body.style.overflow = "hidden";
+            hospital.style.pointerEvents = "none";
+            row.style.pointerEvents = "none";
+            hospitalcol.style.pointerEvents = "none";
+            subheader.style.pointerEvents = "none";
+        }
+
+        function togglePopup4(){
+            document.getElementById("popup-5").classList.toggle("active");
+            document.body.style.overflow = "hidden";
+            hospital.style.pointerEvents = "none";
+            row.style.pointerEvents = "none";
+            hospitalcol.style.pointerEvents = "none";
+            subheader.style.pointerEvents = "none";
+        }
+
+        function togglePopup5(){
+            document.getElementById("popup-6").classList.toggle("active");
+            document.body.style.overflow = "hidden";
+            hospital.style.pointerEvents = "none";
+            row.style.pointerEvents = "none";
+            hospitalcol.style.pointerEvents = "none";
+            subheader.style.pointerEvents = "none";
+        }
+
+        function togglePopup6(){
+            document.getElementById("popup-7").classList.toggle("active");
+            document.body.style.overflow = "hidden";
+            hospital.style.pointerEvents = "none";
+            row.style.pointerEvents = "none";
+            hospitalcol.style.pointerEvents = "none";
+            subheader.style.pointerEvents = "none";
+        }
+        function togglePopup7(){
+            document.getElementById("popup-8").classList.toggle("active");
+            document.body.style.overflow = "hidden";
+            hospital.style.pointerEvents = "none";
+            row.style.pointerEvents = "none";
+            hospitalcol.style.pointerEvents = "none";
+            subheader.style.pointerEvents = "none";
+        }
+        
+        function closePopup(){
+            document.getElementById("popup-1").classList.toggle("active");
+            document.body.style.overflow = "auto";
+        }
+
+        function closePopup1(){
+            document.getElementById("popup-2").classList.toggle("active");
+            document.body.style.overflow = "auto";
+        }
+
+        function closePopup2(){
+            document.getElementById("popup-3").classList.toggle("active");
+            document.body.style.overflow = "auto";
+        }
+
+        function closePopup3(){
+            document.getElementById("popup-4").classList.toggle("active");
+            document.body.style.overflow = "auto";
+        }
+
+        function closePopup4(){
+            document.getElementById("popup-5").classList.toggle("active");
+            document.body.style.overflow = "auto";
+        }
+
+        function closePopup5(){
+            document.getElementById("popup-6").classList.toggle("active");
+            document.body.style.overflow = "auto";
+        }
+
+        function closePopup6(){
+            document.getElementById("popup-7").classList.toggle("active");
+            document.body.style.overflow = "auto";
+        }
+
+        function closePopup7(){
+            document.getElementById("popup-8").classList.toggle("active");
+            document.body.style.overflow = "auto";
+        }
+    </script>
+</body>
+</html>

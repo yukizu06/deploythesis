@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial scale=1.0">
+    <title> HoMe ExpeDiTioNer </title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="subheader">
+        <nav>
+            <a href="/index"><img src="{% static 'images/logo.png' %}"></a>
+            <div class="nav-links">
+            <ul>
+                <li><a href="/index">HOME</a></li>
+                <li><a href="about">ABOUT</a></li>
+                <li><a href="hospital">HOSPITALS</a></li>
+                <li><a href="Diseases">PROFILE</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a href="logout">LOG-OUT</a></li>
+                {% else %}
+                <li><a href="login">LOG-IN</a></li>
+                {% endif %}
+            </ul>           
+            </div>
+        </nav>
+        <h1>PROFILE</h1>
+    </section>
+<!---------- Profile ---------->
+<section class="search">
+    <p>Fullname: {{ fullname }}</p>
+    <p>Age: {{ age }}</p>
+    <p>Contact Number: {{ contact_number }}</p>
+    <p>Allergies: {{ allergies }}</p>
+    <p>Blood type: {{ blood_type }}</p>
+    <p>Address: {{ address }}</p>
+    <a href="editprofile">Edit Profile</a>
+</section>
+</body>
+</html>

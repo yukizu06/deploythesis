@@ -1,0 +1,85 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial scale=1.0">
+    <title> HoMe ExpeDiTioNer </title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script>
+        function downloadPDF() {
+            var doc = new jsPDF();
+            var specialElementHandlers = {
+                '#editor': function (element, renderer) {
+                    return true;
+                }
+            };
+            doc.fromHTML($('body').get(0), 15, 15, {
+                'width': 170,
+                'elementHandlers': specialElementHandlers
+            });
+            doc.save('sample-file.pdf');
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <section>
+        <nav>   
+            <a href="/index/"><img src="{% static 'images/homeexloderlogo.png' %}"></a>            
+            <div class="nav-links">
+            <ul>
+                <li><a href="/index/">HOME</a></li>
+                <li><a href="about">ABOUT</a></li>
+                <li><a href="symptoms">SYMPTOMS</a></li>
+                <li><a href="hospital">HOSPITALS</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a href="profile">{{ username|upper }}</a></li>
+                {% else %}
+                <li><a href="profile">PROFILE</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <li><a href="logout">LOG-OUT</a></li>
+                {% else %}
+                <li><a href="login">LOG-IN</a></li>
+                {% endif %}
+            </ul>
+            </div>
+        </nav>
+        <h1>PROFILE</h1>
+    </section>
+<!---------- Profile ---------->
+    <section class="profile">
+        <li>Fullname: {{ fullname }}</li>
+        <li>Age: {{ age }}</li>
+        <li>Allergies: {{ allergies }}</li>
+        <li>Blood type: {{ blood }}</li>
+        <li>Height in cm: {{ height }}</li>
+        <li>Weith in Kg: {{ weight }}</li>
+        <a href="editprofile" class="hero-btn2">Edit Profile</a>
+    </section>
+
+        
+    <section class="picture">
+        <form method="post" action="profile" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>Attach your Medical Information Here:</p>
+            {{form1}}
+            <button>Submit</button>
+        </form>
+    </section>
+    <h3>Medical Data</h3>
+    {% for picture in pictures %}
+        <img src="{{ picture.image.url }}" alt="image"><br>
+    {% endfor %}
+
+    <a href="{% url 'download_pdf' %}">
+        <button>Download PDF</button>
+    </a>
+</div>
+</body>
+</html>

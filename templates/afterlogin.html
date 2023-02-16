@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial scale=1.0">
+    <title> HoMe ExpeDiTioNer </title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="subheader">
+    </section>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label for="fullname">Fullname:</label>
+        <input type="text" id="fullname" name="fullname" value="{{ fullname }}">
+        <br>
+        <label for="age">Age:</label>
+        <input type="int" id="age" name="age" value="{{ age }}">
+        <br>
+        <label for="allergies">Allergies:</label>
+        <input type="text" id="allergies" name="allergies" value="{{ allergies }}">
+        <br>
+        <label for="bloodtype">Blood type:</label>
+        <input type="text" id="bloodtype" name="bloodtype" value="{{ bloodtype }}">
+        <br>
+        <label for="height1">Height in cm:</label>
+        <input type="text" id="height" name="height" value="{{ height }}">
+        <br>
+        <label for="weight1">Weight in Kg:</label>
+        <input type="text" id="weight" name="weight" value="{{ weight }}">
+        <br>
+        <input type="submit" value="Save Changes" action="index">
+    </form>
+</body>
+</html>

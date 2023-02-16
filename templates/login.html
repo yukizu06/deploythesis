@@ -1,0 +1,240 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="with=device-width, initial scale=1.0">
+    <title> HoMe ExpeDiTioNer </title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css" integrity="sha384-z4tVnCr80ZcL0iufVdGQSUzNvJsKjEtqYZjiQrrYKlpGow+btDHDfQWkFjoaz/Zr" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/5b8bd885f6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<body>
+ 
+    <section class="header1">
+        <nav2 class="logo">   
+            <a href="/index/"><img src="{% static 'images/homeexloderlogo.png' %}"></a>
+        </nav2>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if page == 'login' %}
+        <div>
+        <form method="POST" action="" autocomplete="off" onclick="showKeyboard()">
+            {% csrf_token %}
+
+            <label>Username:</label>
+            <input type="text" name="username1" placeholder="Enter Username" id="username"> 
+            
+            <label>Password:</label>
+            <input type="password" name="password1" placeholder="Enter Password" id="password">
+            <input type="submit" value="Login">
+
+            <div id="keyboard1" style="display:none;">
+              <button type="button" id="Q" onclick="addLetter('Q')">Q</button>
+              <button type="button" id="W" onclick="addLetter('W')">W</button>
+              <button type="button" id="E" onclick="addLetter('E')">E</button>
+              <button type="button" id="R" onclick="addLetter('R')">R</button>
+              <button type="button" id="T" onclick="addLetter('T')">T</button>
+              <button type="button" id="Y" onclick="addLetter('Y')">Y</button>
+              <button type="button" id="U" onclick="addLetter('U')">U</button>
+              <button type="button" id="I" onclick="addLetter('I')">I</button>
+              <button type="button" id="O" onclick="addLetter('O')">O</button>
+              <button type="button" id="P" onclick="addLetter('P')">P</button>
+              <button type="button" id="backspace" onclick="funcDel()">Delete</button><br>
+              <button type="button" id="A" onclick="addLetter('A')">A</button>
+              <button type="button" id="S" onclick="addLetter('S')">S</button>
+              <button type="button" id="D" onclick="addLetter('D')">D</button>
+              <button type="button" id="F" onclick="addLetter('F')">F</button>
+              <button type="button" id="G" onclick="addLetter('G')">G</button>
+              <button type="button" id="H" onclick="addLetter('H')">H</button>
+              <button type="button" id="J" onclick="addLetter('J')">J</button>
+              <button type="button" id="K" onclick="addLetter('K')">K</button>
+              <button type="button" id="L" onclick="addLetter('L')">L</button>
+              <button type="submit" id="enter" onclick="simulateEnter()">Enter</button> <br>
+              <button type="button" id="Z" onclick="addLetter('Z')">Z</button>
+              <button type="button" id="X" onclick="addLetter('X')">X</button>
+              <button type="button" id="C" onclick="addLetter('C')">C</button>
+              <button type="button" id="V" onclick="addLetter('V')">V</button>
+              <button type="button" id="B" onclick="addLetter('B')">B</button>
+              <button type="button" id="N" onclick="addLetter('N')">N</button>
+              <button type="button" id="M" onclick="addLetter('M')">M</button><br>
+              <button type="button" id="space" onclick="addToInput(' ')">Space</button>
+              <button type="button" id="clear" onclick="funcClr()">Clear</button>   
+          </div>
+            <script>
+                function showKeyboard() {
+                  var keyboard = document.getElementById("keyboard1");
+                  keyboard.style.display = "block";
+                }
+              
+                function hideKeyboard() {
+                  var keyboard = document.getElementById("keyboard1");
+                  keyboard.style.display = "none";
+                }
+              
+                function showPasswordKeyboard() {
+                  var passwordKeyboard = document.getElementById("passwordKeyboard");
+                  passwordKeyboard.style.display = "block";
+                }
+              
+                function hidePasswordKeyboard() {
+                  var passwordKeyboard = document.getElementById("passwordKeyboard");
+                  passwordKeyboard.style.display = "none";
+                }
+              
+                function funcClr() {
+                  var input = document.getElementById(currentInput);
+                  input.value = "";
+                }
+              
+                function funcDel() {
+                  var input = document.getElementById(currentInput);
+                  input.value = input.value.substring(0, input.value.length - 1);
+                }
+              
+                var currentInput = "username";
+              
+                function addLetter(letter) {
+                  var input = document.getElementById(currentInput);
+                  input.value += letter;
+                }
+              
+                document.getElementById("username").onfocus = function() {
+                  currentInput = "username";
+                  showKeyboard();
+                }
+              
+                document.getElementById("password").onfocus = function() {
+                  currentInput = "password";
+                  showPasswordKeyboard();
+                }
+                
+              
+                document.addEventListener("click", function(event) {
+                  var username = document.getElementById("username");
+                  var password = document.getElementById("password");
+                  var keyboard = document.getElementById("keyboard1");
+                  var passwordKeyboard = document.getElementById("passwordKeyboard");
+              
+                  if (event.target !== username && event.target !== password 
+                      && event.target.parentNode !== keyboard 
+                      && event.target.parentNode !== passwordKeyboard) {
+                    hideKeyboard();
+                    hidePasswordKeyboard();
+                  }
+                });      
+              </script>
+        </form>
+        </div>    
+        {% else %}
+              <form method="POST" action="" onclick="showKeyboard()">
+                  {% csrf_token %}
+                  {{form.as_p}}
+                  <input type="submit" value="Register">
+                  May account na
+                  <a href="login">Mag login</a>
+                </form>
+              <div id="keyboard2" style="display:none;">
+                <button type="button" id="Q" onclick="addLetter('Q','id_username','id_password1','id_password2')">Q</button>
+                <button type="button" id="W" onclick="addLetter('W','id_username','id_password1','id_password2')">W</button>
+                <button type="button" id="E" onclick="addLetter('E','id_username','id_password1','id_password2')">E</button>
+                <button type="button" id="R" onclick="addLetter('R','id_username','id_password1','id_password2')">R</button>
+                <button type="button" id="T" onclick="addLetter('T','id_username','id_password1','id_password2')">T</button>
+                <button type="button" id="Y" onclick="addLetter('Y','id_username','id_password1','id_password2')">Y</button>
+                <button type="button" id="U" onclick="addLetter('U','id_username','id_password1','id_password2')">U</button>
+                <button type="button" id="I" onclick="addLetter('I','id_username','id_password1','id_password2')">I</button>
+                <button type="button" id="O" onclick="addLetter('O','id_username','id_password1','id_password2')">O</button>
+                <button type="button" id="P" onclick="addLetter('P','id_username','id_password1','id_password2')">P</button>
+                <button type="button" id="backspace" onclick="funcDel()">Delete</button><br>
+                <button type="button" id="A" onclick="addLetter('A','id_username','id_password1','id_password2')">A</button>
+                <button type="button" id="S" onclick="addLetter('S','id_username','id_password1','id_password2')">S</button>
+                <button type="button" id="D" onclick="addLetter('D','id_username','id_password1','id_password2')">D</button>
+                <button type="button" id="F" onclick="addLetter('F','id_username','id_password1','id_password2')">F</button>
+                <button type="button" id="G" onclick="addLetter('G','id_username','id_password1','id_password2')">G</button>
+                <button type="button" id="H" onclick="addLetter('H','id_username','id_password1','id_password2')">H</button>
+                <button type="button" id="J" onclick="addLetter('J','id_username','id_password1','id_password2')">J</button>
+                <button type="button" id="K" onclick="addLetter('K','id_username','id_password1','id_password2')">K</button>
+                <button type="button" id="L" onclick="addLetter('L','id_username','id_password1','id_password2')">L</button>
+                <button type="submit" id="enter" onclick="simulateEnter()">Enter</button> <br>
+                <button type="button" id="Z" onclick="addLetter('Z','id_username','id_password1','id_password2')">Z</button>
+                <button type="button" id="X" onclick="addLetter('X','id_username','id_password1','id_password2')">X</button>
+                <button type="button" id="C" onclick="addLetter('C','id_username','id_password1','id_password2')">C</button>
+                <button type="button" id="V" onclick="addLetter('V','id_username','id_password1','id_password2')">V</button>
+                <button type="button" id="B" onclick="addLetter('B','id_username','id_password1','id_password2')">B</button>
+                <button type="button" id="N" onclick="addLetter('N','id_username','id_password1','id_password2')">N</button>
+                <button type="button" id="M" onclick="addLetter('M','id_username','id_password1','id_password2')">M</button><br>
+                <button type="button" id="space" onclick="addLetter(' ')">Space</button>
+                <button type="button" id="clear" onclick="funcClr()">Clear</button>   
+            </div>    
+            <script>
+              function showKeyboard() {
+                var keyboard = document.getElementById("keyboard2");
+                keyboard.style.display = "block";
+              }
+              
+              function hideKeyboard() {
+                var keyboard = document.getElementById("keyboard2");
+                keyboard.style.display = "none";
+              }
+              
+              function funcClr() {
+                var input = document.getElementById(currentInput);
+                input.value = "";
+              }
+              
+              function funcDel() {
+                var input = document.getElementById(currentInput);
+                input.value = input.value.substring(0, input.value.length - 1);
+              }
+              
+              var currentInput = "username";
+              
+              function addLetter(letter) {
+                var input = document.getElementById(currentInput);
+                input.value += letter;
+              }
+              
+              document.getElementById("id_username").onfocus = function() {
+                currentInput = "id_username";
+                showKeyboard();
+              };
+              
+              document.getElementById("id_password1").onfocus = function() {
+                currentInput = "id_password1";
+                showKeyboard();
+              };
+              
+              document.getElementById("id_password2").onfocus = function() {
+                currentInput = "id_password2";
+                showKeyboard();
+              };
+              
+              document.addEventListener("click", function(event) {
+                var username = document.getElementById("id_username");
+                var password1 = document.getElementById("id_password1");
+                var password2 = document.getElementById("id_password2");
+                var keyboard = document.getElementById("keyboard2");
+                
+                if (event.target !== username && event.target !== password1 && 
+                    event.target !== password2 && event.target.parentNode !== keyboard) {
+                  hideKeyboard();
+                }
+              });
+            </script>
+        {% endif %}
+      
+      </section>
+
+    
+</body>
+</html>

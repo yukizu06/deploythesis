@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      @page {
+        size: 8.5in 11in;
+      }
+      
+      header {
+        display:flex;
+        justify-content: space-between;
+        align-items:center;
+        height: 100px;
+      }
+      
+      /* Style for the logos in the header */
+      .logo {
+        width: 50px;
+        height: 50px;
+        margin: 0 10px;
+      }
+      
+      /* Style for the text in the header */
+      h1 {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0;
+      }
+      
+      /* Add some padding to the body */
+      body {
+        padding: 20px;
+      }
+      p {
+        font-size: 14px;
+      }
+      img {
+        width: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header with two logos and text -->
+    <header>
+      <img src="static/images/NCST-MAIN_LOGO.png" class="logo">
+      <h1>National College of Science and Technology</h1>
+      <img src="static/images/Homeexloderlogo.png" class="logo">
+      <hr>
+    </header>
+    
+    <!-- Body content with text and images -->
+    Fullname: {{fullname}}<br>
+    Age: {{age}}<br>
+    Allergies: {{allergies}}<br>
+    Bloodtype: {{blood}}<br>
+    Height in cm: {{height}}<br>
+    Weight in Kg: {{weight}}<br>
+
+    {% for picture in pictures %}
+        <img src="{{ picture.image.path }}" alt="{{ picture.image.path }}">
+    {% endfor %}
+  </body>
+</html>
