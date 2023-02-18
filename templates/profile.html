@@ -62,8 +62,123 @@
         <li>Weith in Kg: {{ weight }}</li>
         <a href="editprofile" class="hero-btn2">Edit Profile</a>
     </section>
-
+    <div id="keyboard3" style="display:none;">
+        <button type="button" id="0" onclick="addLetter('0','fullname1','age1','allergies1','bloodtype1','height1','weight1')">0</button>
+        <button type="button" id="1" onclick="addLetter('1','fullname1','age1','allergies1','bloodtype1','height1','weight1')">1</button>
+        <button type="button" id="2" onclick="addLetter('2','fullname1','age1','allergies1','bloodtype1','height1','weight1')">2</button>
+        <button type="button" id="3" onclick="addLetter('3','fullname1','age1','allergies1','bloodtype1','height1','weight1')">3</button>
+        <button type="button" id="4" onclick="addLetter('4','fullname1','age1','allergies1','bloodtype1','height1','weight1')">4</button>
+        <button type="button" id="5" onclick="addLetter('5','fullname1','age1','allergies1','bloodtype1','height1','weight1')">5</button>
+        <button type="button" id="6" onclick="addLetter('6','fullname1','age1','allergies1','bloodtype1','height1','weight1')">6</button>
+        <button type="button" id="7" onclick="addLetter('7','fullname1','age1','allergies1','bloodtype1','height1','weight1')">7</button>
+        <button type="button" id="8" onclick="addLetter('8','fullname1','age1','allergies1','bloodtype1','height1','weight1')">8</button>
+        <button type="button" id="9" onclick="addLetter('9','fullname1','age1','allergies1','bloodtype1','height1','weight1')">9</button>
+        <button type="button" id="0" onclick="addLetter('Q','fullname1','age1','allergies1','bloodtype1','height1','weight1')">Q</button>
+        <button type="button" id="W" onclick="addLetter('W','fullname1','age1','allergies1','bloodtype1','height1','weight1')">W</button>
+        <button type="button" id="E" onclick="addLetter('E','fullname1','age1','allergies1','bloodtype1','height1','weight1')">E</button>
+        <button type="button" id="R" onclick="addLetter('R','fullname1','age1','allergies1','bloodtype1','height1','weight1')">R</button>
+        <button type="button" id="T" onclick="addLetter('T','fullname1','age1','allergies1','bloodtype1','height1','weight1')">T</button>
+        <button type="button" id="Y" onclick="addLetter('Y','fullname1','age1','allergies1','bloodtype1','height1','weight1')">Y</button>
+        <button type="button" id="U" onclick="addLetter('U','fullname1','age1','allergies1','bloodtype1','height1','weight1')">U</button>
+        <button type="button" id="I" onclick="addLetter('I','fullname1','age1','allergies1','bloodtype1','height1','weight1')">I</button>
+        <button type="button" id="O" onclick="addLetter('O','fullname1','age1','allergies1','bloodtype1','height1','weight1')">O</button>
+        <button type="button" id="P" onclick="addLetter('P','fullname1','age1','allergies1','bloodtype1','height1','weight1')">P</button>
+        <button type="button" id="backspace" onclick="funcDel()">Delete</button><br>
+        <button type="button" id="A" onclick="addLetter('A','fullname1','age1','allergies1','bloodtype1','height1','weight1')">A</button>
+        <button type="button" id="S" onclick="addLetter('S','fullname1','age1','allergies1','bloodtype1','height1','weight1')">S</button>
+        <button type="button" id="D" onclick="addLetter('D','fullname1','age1','allergies1','bloodtype1','height1','weight1')">D</button>
+        <button type="button" id="F" onclick="addLetter('F','fullname1','age1','allergies1','bloodtype1','height1','weight1')">F</button>
+        <button type="button" id="G" onclick="addLetter('G','fullname1','age1','allergies1','bloodtype1','height1','weight1')">G</button>
+        <button type="button" id="H" onclick="addLetter('H','fullname1','age1','allergies1','bloodtype1','height1','weight1')">H</button>
+        <button type="button" id="J" onclick="addLetter('J','fullname1','age1','allergies1','bloodtype1','height1','weight1')">J</button>
+        <button type="button" id="K" onclick="addLetter('K','fullname1','age1','allergies1','bloodtype1','height1','weight1')">K</button>
+        <button type="button" id="L" onclick="addLetter('L','fullname1','age1','allergies1','bloodtype1','height1','weight1')">L</button>
+        <button type="submit" id="enter" onclick="simulateEnter()">Enter</button> <br>
+        <button type="button" id="Z" onclick="addLetter('Z','fullname1','age1','allergies1','bloodtype1','height1','weight1')">Z</button>
+        <button type="button" id="X" onclick="addLetter('X','fullname1','age1','allergies1','bloodtype1','height1','weight1')">X</button>
+        <button type="button" id="C" onclick="addLetter('C','fullname1','age1','allergies1','bloodtype1','height1','weight1')">C</button>
+        <button type="button" id="V" onclick="addLetter('V','fullname1','age1','allergies1','bloodtype1','height1','weight1')">V</button>
+        <button type="button" id="B" onclick="addLetter('B','fullname1','age1','allergies1','bloodtype1','height1','weight1')">B</button>
+        <button type="button" id="N" onclick="addLetter('N','fullname1','age1','allergies1','bloodtype1','height1','weight1')">N</button>
+        <button type="button" id="M" onclick="addLetter('M','fullname1','age1','allergies1','bloodtype1','height1','weight1')">M</button><br>
+        <button type="button" id="space" onclick="addLetter(' ')">Space</button>
+        <button type="button" id="clear" onclick="funcClr()">Clear</button>   
+    </div>    
+    <script>
+        function showKeyboard() {
+            var keyboard = document.getElementById("keyboard3");
+            keyboard.style.display = "block";
+        }
+    
+        function hideKeyboard() {
+            var keyboard = document.getElementById("keyboard3");
+            keyboard.style.display = "none";
+        }
+    
+        function funcClr() {
+            var input = document.getElementById(currentInput);
+            input.value = "";
+        }
+    
+        function funcDel() {
+            var input = document.getElementById(currentInput);
+            input.value = input.value.substring(0, input.value.length - 1);
+        }
+    
+        var currentInput = "fullname1";
+    
+        function addLetter(letter) {
+            var input = document.getElementById(currentInput);
+            input.value += letter;
+        }
+    
+        document.getElementById("fullname1").onfocus = function() {
+            currentInput = "fullname1";
+            showKeyboard();
+        };
         
+        document.getElementById("age1").onfocus = function() {
+            currentInput = "age1";
+            showKeyboard();
+        };
+        
+        document.getElementById("allergies1").onfocus = function() {
+            currentInput = "allergies1";
+            showKeyboard();
+        };
+        
+        document.getElementById("bloodtype1").onfocus = function() {
+            currentInput = "bloodtype1";
+            showKeyboard();
+        };
+        
+        document.getElementById("height1").onfocus = function() {
+            currentInput = "height1";
+            showKeyboard();
+        };
+        
+        document.getElementById("weight1").onfocus = function() {
+            currentInput = "weight1";
+            showKeyboard();
+        };
+    
+        document.addEventListener("click", function(event) {
+            var fullname = document.getElementById("fullname1");
+            var age = document.getElementById("age1");
+            var allergies = document.getElementById("allergies1");
+            var bloodtype = document.getElementById("bloodtype1");
+            var height = document.getElementById("height1");
+            var weight = document.getElementById("weight1");
+            var keyboard = document.getElementById("keyboard3");
+    
+            if (event.target !== fullname && event.target !== age && event.target !== allergies 
+            && event.target !== bloodtype && event.target !== height && event.target !== weight 
+            && event.target.parentNode !== keyboard) {
+                hideKeyboard();
+            }
+        });
+    </script>
+    
     <section class="picture">
         <form method="post" action="profile" enctype="multipart/form-data">
             {% csrf_token %}

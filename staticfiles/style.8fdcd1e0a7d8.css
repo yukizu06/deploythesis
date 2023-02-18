@@ -1,0 +1,896 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+/*--------- home page ----------*/
+.subheader1{
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)), url("images/banner2.c3db96f8ab3a.png");
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    color: white;
+}
+.subheader1 h1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -600%);
+    text-align: center;
+}
+
+.hero-btn1{
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -450%);
+}
+.hero-btn1:hover{
+    border: 1px solid orangered;
+    background: orangered;
+    transition: 1s;
+    color: white;
+}
+/*------- search -------*/
+.dub-header{
+    min-height: 100vh;
+    max-height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)), url("images/logo.c3a9abca08c6.png");
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
+    color: white;
+    top: 0;
+    left: 0;
+    touch-action: manipulation;
+}
+.search{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+.search ul{
+    list-style: none;
+}
+.search li{
+    flex-basis: 31%;
+    background: rgb(102, 182, 122);
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    color: black;
+    font-family: 'Noto Sans', sans-serif;
+}
+.search li:last-of-type {
+    margin: 0;
+  }
+/*------- index --------*/
+.popuphead .overlay{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+}
+.popuphead .content{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%) scale(0);
+    background: white;
+    width: 450px;
+    height: 50vh;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+.popuphead .content h1{
+    font-size: 16px;
+}
+.popuphead .close-btn{
+    position: sticky;
+    right: 20px;
+    top: 20px;
+    height: 30px;
+    width: 30px;
+    background: #222;
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+}
+.popuphead .popup-info{
+    color: dimgray;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+.popuphead.active .overlay{
+    display: block;
+}
+.popuphead.active .content{
+    transition: all 300ms ease-in-out;
+    transform:translate(-50%, -50%) scale(1);
+}
+.popuptorso .overlay{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+}
+.popuptorso .content{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%) scale(0);
+    background: white;
+    width: 450px;
+    height: 50vh;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+.popuptorso .content h1{
+    font-size: 16px;
+}
+.popuptorso .close-btn{
+    position: sticky;
+    right: 20px;
+    top: 20px;
+    height: 30px;
+    width: 30px;
+    background: #222;
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+}
+.popuptorso .popup-info{
+    color: dimgray;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+.popuptorso.active .overlay{
+    display: block;
+}
+.popuptorso.active .content{
+    transition: all 300ms ease-in-out;
+    transform:translate(-50%, -50%) scale(1);
+}
+
+.popuplegs .overlay{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+}
+.popuplegs .content{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%) scale(0);
+    background: white;
+    width: 450px;
+    height: 50vh;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+.popuplegs .content h1{
+    font-size: 16px;
+}
+.popuplegs .close-btn{
+    position: sticky;
+    right: 20px;
+    top: 20px;
+    height: 30px;
+    width: 30px;
+    background: #222;
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+}
+.popuplegs .popup-info{
+    color: dimgray;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+.popuplegs.active .overlay{
+    display: block;
+}
+.popuplegs.active .content{
+    transition: all 300ms ease-in-out;
+    transform:translate(-50%, -50%) scale(1);
+}
+.search-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-55%, -800%);
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 50%;
+    height: 35px;
+    padding: 0 10px;
+    font-size: 16px;
+}
+  
+.search-form input[type="text"] {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: black;
+    font-size: large;
+}
+
+.search-form button[type="submit"] {
+    float: right;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #999;
+    cursor: pointer;
+}
+  
+.search-form button[type="submit"]:hover {
+    color: #333;
+}
+  
+.search-form button[type="submit"]:active {
+    color: #333;
+}
+i.fas {
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+input::placeholder {
+    color: white;
+}
+
+.header{
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url("images/banner2.c3db96f8ab3a.png");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+}
+/* nav{
+    display: flex;
+    padding: 2% 6%;
+    justify-content: space-between;
+    align-items: center;
+} */
+nav {
+    background-color: #333333; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+nav img{
+    width: 150px;
+}
+nav2 img{
+    width: 150px;
+}
+form{
+    text-align: center;
+    margin-right: 1200px;
+}
+.nav-links{
+    flex: 1;
+    text-align: right;
+    margin-bottom: 110px    ;
+}
+.nav-links ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+.nav-links ul li a{
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+.nav-links ul li a:hover{
+    color: orangered;
+    transition: 1s;
+}
+.human-anatomy img{
+    width: 500px;
+}
+.head{
+    position:absolute;
+    top: 770px;
+    left: 30%;
+}
+.torso{
+    position: absolute;
+    top: 891px;
+    left: 30%;
+}
+.legs{
+    position: absolute;
+    top: 1131px;
+    left: 30%;
+}
+
+.text-box{
+    width: 90%;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+.text-box h1{
+    font-size: 50px;
+    margin-left: 100px;
+    position: center;
+}
+.text-box p{
+    margin: 5px 0 1px;
+    font-size: 14px;
+    color: white;
+    position: center;
+}
+.hero-btn{
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+.hero-btn:hover{
+    border: 1px solid orangered;
+    background: orangered;
+    transition: 1s;
+}
+/*---------*/
+.row{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+/*------ hospital -----*/
+.hospital{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+h1{
+    font-size: 36px;
+    font-weight: 600;
+}
+p{
+    color: dimgray;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+.hospitalcol{
+    flex-basis: 31%;
+    background: lightpink;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    /* pointer-events: none;    */
+}
+h3{
+    text-align: center;
+    font-weight: 600;
+    margin: 10px 0;
+}
+.hospitalcol:hover{
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+.hospitalcol img{
+    width: 100%;
+}
+/*--------- about us page ----------*/
+.subheader{
+    min-height: 100vh;
+    max-height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)), url("images/Homeexloderbanner.f2a68583063b.png");
+    background-position: center;
+    background-size: cover;
+    text-align: center;
+    color: white;
+}
+.subheader h1{
+    margin-top: 100px;
+}
+
+.about-us{
+    width: 80%;
+    margin: auto;
+    padding-top: 80px;
+    padding-bottom: 50px;
+}
+.about-col{
+    flex-basis: 48%;
+    padding: 30px 2px;
+}
+.about-col img{
+    width: 100%;
+}
+.about-col h1{
+    padding-top: 0;
+}
+.about-col p{
+    padding: 10px 0 20px;
+}
+.orangered-btn{
+    border: 1px solid orangered;
+    background: transparent;
+    color: orangered;
+    text-align: center;
+}
+.orangered-btn:hover{
+    color: white;
+}
+/*---------contact----------*/
+.location{
+    width: 80%;
+    margin: auto;
+    padding: 80px 0;
+}
+.location iframe{
+    width: 100%;
+}
+.contact-us{
+    width: 80%;
+    margin: auto;
+}
+.contact-col{
+    flex-basis: 48%;
+    margin-bottom: 30px;
+}
+.contact-col div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.contact-col div .fa{
+    font-size: 28px;
+    color: orangered;
+    margin: 10px;
+    margin-right: 30px;
+}
+.contact-col div p{
+    padding: 0;
+}
+.contact-col div h5{
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: gray;
+    font-weight: 400;
+}
+/*------ profile -----*/
+.disease{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+h1{
+    font-size: 36px;
+    font-weight: 600;
+}
+p{
+    color: dimgray;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+.profile{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+.profile li{
+    flex-basis: 31%;
+    background: rgb(102, 182, 122);
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    color: black;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: large;
+    font-weight: 600;
+}
+.hero-btn2{
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+.hero-btn2:hover{
+    border: 1px solid orangered;
+    background: orangered;
+    transition: 1s;
+}
+.container{
+    min-height: 100vh;
+    max-height: 100%;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)), url("images/banner2.c3db96f8ab3a.png");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
+    color: white;    
+}
+.picture {
+    /* Add styles for the form element here */
+    /* for example */
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    /* border: 1px solid #ccc;
+    border-radius: 5px; */
+    /* background-color: #f9f9f9; */
+    position:relative;
+    bottom: 0;
+    display: flex;
+    align-items: flex-end;
+    height: 100vh;
+    /* overflow-y: scroll; */
+}
+.picture input[type="file"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    color: black;
+}
+.picture input[type="submit"] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+img {
+    width: 50%;
+  }
+/*------ popup ------*/
+.popup .overlay{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+}
+.popup .content{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%) scale(0);
+    background: white;
+    width: 450px;
+    height: 50vh;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+.popup .close-btn{
+    position: sticky;
+    right: 20px;
+    top: 20px;
+    height: 30px;
+    width: 30px;
+    background: #222;
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+}
+.popup .popup-info{
+    color: dimgray;
+    font-size: 5px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+.popup.active .overlay{
+    display: block;
+}
+.popup.active .content{
+    transition: all 300ms ease-in-out;
+    transform:translate(-50%, -50%) scale(1);
+}
+.hospitalmap{
+    width: 80%;
+    margin: auto;
+    /* padding: 80px 0; */
+}
+.hospitalmap iframe{
+    width: 100%;
+}
+/*----- log in -----*/
+
+/* body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+} */
+
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Messages */
+.messages {
+    position: absolute;
+    top: 70px;
+    left: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #ddd;
+    width: 500px;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    /* padding: 12px 20px; */
+    /* margin-bottom: 20px; */
+    border: 1px solid #ccc;
+    /* border-radius: 4px; */
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.header1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url("images/banner2.c3db96f8ab3a.png");
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*------ keyboard search -----*/
+#keyboard {
+    width: 130%; 
+    height: 270px; 
+    background-color: black; 
+    border: 10px solid #ccc; 
+    padding: 10px; 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: center; 
+    position: fixed; 
+    bottom: 0;  
+    z-index: 1;
+    top:880%;
+    left: -15%;
+}
+#keyboard button {
+    width: 60px; 
+    height: 60px; 
+    font-size: 20px; 
+    font-weight: bold; 
+    margin: 5px; 
+    background-color: white; 
+    border: none; 
+}
+
+#keyboard button:active {
+    background-color: #ddd; 
+}
+/*------ keyboard login-----*/
+#keyboard1 {
+    width: 90%; 
+    height: 260px;
+    position: fixed;
+    bottom: 0;
+    left: 3%;
+    background-color: black;
+    border: 10px solid #ccc;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    /* top: 112%; */
+    /* left: -25%; */
+}
+
+#keyboard1 button {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px;
+    background-color: white;
+    border: none;
+}
+
+#keyboard1 button:active {
+    background-color: #ddd;
+}
+/*------- messages ------*/
+.messages {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    list-style-type: none;
+    color: white;
+    font-size: 20px;
+    background-color: black;
+    /* padding: 20px; */
+}
+
+/*------ keyboard login-----*/
+#keyboard2 {
+    width: 90%; 
+    height: 260px;
+    position: fixed;
+    bottom: 0;
+    left: 3%;
+    background-color: black;
+    border: 10px solid #ccc;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    /* top: 112%; */
+    /* left: -25%; */
+}
+
+#keyboard2 button {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px;
+    background-color: white;
+    border: none;
+}
+
+#keyboard2 button:active {
+    background-color: #ddd;
+}

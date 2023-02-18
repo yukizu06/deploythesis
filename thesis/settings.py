@@ -4,7 +4,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^0+zyz#2&8aveo!9@o2mcb1uc-ts!i_2-t&1&soxs3$zy-k8#-'
 
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
 
 INSTALLED_APPS = [
@@ -83,10 +83,20 @@ USE_I18N = True
 
 USE_TZ = True
 
+
 STATIC_URL = 'static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS =[
+     os.path.join(BASE_DIR, 'static')
+]
 MEDIA_ROOT = ''
-MEDIA_URL = ''
+MEDIA_URL = ''  
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#static work
+import os
+STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+

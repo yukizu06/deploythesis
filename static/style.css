@@ -819,7 +819,7 @@ input[type="submit"] {
 /*------ keyboard login-----*/
 #keyboard1 {
     width: 90%; 
-    height: 260px;
+    height: 250px;
     position: fixed;
     bottom: 0;
     left: 3%;
@@ -862,7 +862,7 @@ input[type="submit"] {
     /* padding: 20px; */
 }
 
-/*------ keyboard login-----*/
+/*------ keyboard register-----*/
 #keyboard2 {
     width: 90%; 
     height: 260px;
@@ -877,8 +877,6 @@ input[type="submit"] {
     justify-content: center;
     align-items: center;
     z-index: 1;
-    /* top: 112%; */
-    /* left: -25%; */
 }
 
 #keyboard2 button {
@@ -892,5 +890,36 @@ input[type="submit"] {
 }
 
 #keyboard2 button:active {
+    background-color: #ddd;
+}
+
+/*------ keyboard profile-----*/
+#keyboard3 {
+    width: 90%; 
+    height: 260px;
+    position: fixed;
+    bottom: 0;
+    left: 3%;
+    background-color: black;
+    border: 10px solid #ccc;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+#keyboard3 button {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px;
+    background-color: white;
+    border: none;
+}
+
+#keyboard3 button:active {
     background-color: #ddd;
 }
